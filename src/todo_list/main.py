@@ -6,11 +6,12 @@ td.use(theme="violet")
 
 @ui.page()
 def home():
-    todos = ui.state(
+    todos = ui.local_storage(
+        "todos",
         [
             {"id": 1, "name": "Task 1", "done": False},
             {"id": 2, "name": "Task 2", "done": True},
-        ]
+        ],
     )
 
     current_task = ui.state("")
@@ -66,7 +67,9 @@ def home():
     with ui.container(size="2"), ui.column():
         with ui.row():
             td.input(
-                value=current_task, placeholder="输入内容，按回车添加新任务"
+                value=current_task,
+                placeholder="输入内容，按回车添加新任务",
+                clearable=True,
             ).on_enter(add_task)
             with (
                 td.button(disabled=ui.not_(can_add_task), shape="circle")
@@ -98,9 +101,9 @@ def tasks_list_view(todos: list, delete_task):
                 ui.icon("td:delete-1-filled").classes("t-icon")
 
 
-with zero() as z:
+with zero(icons_svg_path="assets/icons/zero_icons.svg") as z:
     home()
-    z.to_html("main.html")
+    z.to_html("todos-list.html")
 
 
 ui.server(debug=True).run()

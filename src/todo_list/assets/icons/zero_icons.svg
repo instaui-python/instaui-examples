@@ -1,0 +1,8 @@
+<svg style="display:none;">
+  <symbol id="td-add" viewBox="0 0 24 24" fill="currentColor"><path d="M13 4V11L20 11V13L13 13V20H11L11 13H4L4 11L11 11L11 4L13 4Z" fill="currentColor" />
+</symbol>
+
+<symbol id="td-delete-1-filled" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 3H16.5V1H7.5V3Z" fill="currentColor" />
+    <path d="M22 6V4H2V6H4.02898L4.52898 23H19.471L19.971 6H22ZM16.2431 10.6715L13.4147 13.5L16.2431 16.3284L14.8289 17.7426L12.0005 14.9142L9.17203 17.7426L7.75781 16.3284L10.5862 13.5L7.75781 10.6715L9.17203 9.25732L12.0005 12.0858L14.8289 9.25732L16.2431 10.6715Z" fill="currentColor" />
+</symbol>
+</svg>
