@@ -1,6 +1,6 @@
 from instaui import ui, zero
 import instaui_tdesign as td
-from components import app
+from components import todo_app
 
 td.use(theme="violet")
 
@@ -8,7 +8,7 @@ td.use(theme="violet")
 @ui.page()
 def home():
     with ui.container(size="2"), ui.column(gap="3"):
-        app()
+        todo_app()
 
 
 zero(icons_svg_path="assets/icons/zero_icons.svg").to_html(

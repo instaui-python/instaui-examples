@@ -5,12 +5,27 @@ from state import State, TTodo
 from snippets import fancy_logo_text
 
 
-def app():
-    state = State.get()
-    dark = ui.use_dark()
-
+def todo_app():
     # ui
+    heading_view()
+    new_task_view()
 
+    # tasks list
+    with td.tabs(default_value="all"):
+        with td.tab_panel(label="所有任务", value="all"):
+            tasks_list_view("all")
+
+        with td.tab_panel(label="进行中", value="active"):
+            tasks_list_view("active")
+
+        with td.tab_panel(label="已完成", value="completed"):
+            tasks_list_view("completed")
+
+    task_description_view()
+
+
+def heading_view():
+    dark = ui.use_dark()
     with ui.grid(columns="1fr auto", align="center", mt="2"):
         with ui.box(mx="auto", as_child=True):
             fancy_logo_text("TODO List")
@@ -24,6 +39,10 @@ def app():
                     with mt.case(False):
                         ui.icon("td:mode-light-filled")
 
+
+def new_task_view():
+    state = State.get()
+
     with ui.row():
         td.input(
             value=state.current_task,
@@ -33,18 +52,6 @@ def app():
         td.button(
             icon="add", disabled=ui.not_(state.can_add_task), shape="circle"
         ).on_click(state.add_task)
-
-    with td.tabs(default_value="all"):
-        with td.tab_panel(label="所有任务", value="all"):
-            tasks_list_view("all")
-
-        with td.tab_panel(label="进行中", value="active"):
-            tasks_list_view("active")
-
-        with td.tab_panel(label="已完成", value="completed"):
-            tasks_list_view("completed")
-
-    task_description_view()
 
 
 def tasks_list_view(type: Literal["all", "active", "completed"]):
@@ -97,9 +104,13 @@ def task_description_view():
     state = State.get()
 
     with ui.row(align="center", mt="2"):
-        ui.text(
-            ui.str_format("有 {} 个进行中的任务", state.task_description["remaining"])
-        )
+        with ui.row(gap="1"):
+            ui.text("有")
+            td.tag(
+                state.task_description["remaining"], theme="primary", variant="outline"
+            )
+            ui.text("个进行中的任务")
+
         ui.row(flex_grow="1")
         td.button(
             "清空已完成任务",
