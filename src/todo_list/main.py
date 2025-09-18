@@ -1,6 +1,7 @@
 from instaui import ui, zero
 import instaui_tdesign as td
 from components import todo_app
+import utils
 
 td.use(theme="violet")
 
@@ -11,9 +12,7 @@ def home():
         todo_app()
 
 
-zero(icons_svg_path="assets/icons/zero_icons.svg").to_html(
-    home, file=r"instaui-todo-app\index.html"
-)
+utils.zero_dist(home)
 
 
 ui.server(debug=True).run()
