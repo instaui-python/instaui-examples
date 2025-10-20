@@ -14,6 +14,7 @@ if str(SRC_DIR) not in sys.path:
 import components
 from utils import chart_example, I18nState
 from shared.lang_select import lang_select
+from shared.navigation import navigation_tree, NavItem
 from shared.website_utils import zero_dist_to_website
 
 
@@ -31,7 +32,9 @@ def home():
         lang_select()
 
         with ui.grid(columns="auto 1fr"):
-            components.navigation_tree(infos)
+            navigation_tree(
+                [NavItem(title=info.title, id=info.title_id) for info in infos]
+            )
 
             with ui.container(size="4"), ui.column(gap="4"):
                 ui.heading(_("instaui-echarts 示例"))
@@ -53,7 +56,7 @@ def build_state_html():
     )
 
 
+ui.server(debug=True).run()
+
 if __name__ == "__main__":
     build_state_html()
-
-# ui.server(debug=True).run()

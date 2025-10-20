@@ -1,5 +1,4 @@
-__all__ = ["dependencies_zone", "navigation_tree"]
+__all__ = ["dependencies_zone"]
 
 
 from .install import dependencies_zone
-from .navigation import navigation_tree
