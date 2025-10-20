@@ -73,27 +73,30 @@ def tasks_list_view(type: Literal["all", "active", "completed"]):
 
         # ui
         with ui.vif(show):
-            with ui.match(todo["edit"]) as mt:
-                with mt.case(False):
-                    with ui.grid(columns="1fr auto auto", align="center", pt="2"):
-                        td.checkbox(todo["done"], label=todo["name"])
+            with ui.box(py="1", px="2"):
+                with ui.match(todo["edit"]) as mt:
+                    with mt.case(False):
+                        with ui.grid(columns="1fr auto auto", align="center", pt="2"):
+                            td.checkbox(todo["done"], label=todo["name"])
 
-                        td.button(
-                            icon="edit",
-                            shape="circle",
-                            variant="text",
-                        ).on_click(state.show_edit_input, extends=[todo["id"]])
-                        td.button(
-                            icon="delete-1-filled",
-                            disabled=ui.not_(todo["done"]),
-                            shape="circle",
-                            variant="text",
-                        ).on_click(state.delete_task, extends=[todo["id"]])
+                            td.button(
+                                icon="edit",
+                                shape="circle",
+                                variant="outline",
+                                theme="primary",
+                            ).on_click(state.show_edit_input, extends=[todo["id"]])
 
-                with mt.case(True):
-                    with ui.grid(columns="1fr auto", align="center", pt="2"):
-                        td.input(value=todo["name"]).on_enter(switch_edit)
-                        td.button("确定").on_click(switch_edit)
+                            td.button(
+                                icon="delete-1-filled",
+                                disabled=ui.not_(todo["done"]),
+                                shape="circle",
+                                variant="dashed",
+                            ).on_click(state.delete_task, extends=[todo["id"]])
+
+                    with mt.case(True):
+                        with ui.grid(columns="1fr auto", align="center", pt="2"):
+                            td.input(value=todo["name"]).on_enter(switch_edit)
+                            td.button("确定").on_click(switch_edit)
 
     # ui
     with ui.vfor(todos, key="item.id") as todo:
@@ -114,5 +117,6 @@ def task_description_view():
         ui.row(flex_grow="1")
         td.button(
             "清空已完成任务",
+            variant="outline",
             disabled=ui.len_(state.completed_tasks) < 1,
         ).on_click(state.clear_completed_tasks)

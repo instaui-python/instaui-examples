@@ -1,23 +1,28 @@
-from typing import Callable
+from typing import Callable, Optional
 from instaui import zero, cdn
 from instaui_tdesign import cdn as td_cdn
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+WEBSITE_DIR = Path(__file__).parent.parent.parent / "website"
 
-def zero_dist(render_fn: Callable):
+
+def zero_dist_to_website(
+    render_fn: Callable, *, base_folder: Path, file: str, cdns: Optional[list] = None
+):
     zero(
-        icons_svg_path=add_td_prefix_to_symbols,
-        cdn_resource_overrides=[cdn.override(), td_cdn.override()],
-    ).to_html(render_fn, file=r"instaui-todo-app\index.html")
+        icons_svg_path=lambda: add_td_prefix_to_symbols(base_folder),
+        cdn_resource_overrides=[cdn.override(), td_cdn.override(), *(cdns or [])],
+    ).to_html(render_fn, file=WEBSITE_DIR / file)
 
 
 def add_td_prefix_to_symbols(
-    svg_path: Path = Path(__file__).parent / "assets/icons/td.svg",
+    svg_path: Path,
+    prefix: Optional[str] = None,
 ) -> str:
     """
-    Reads an SVG file, ensures all <symbol> elements have an ID prefixed with 'td-'.
-    If an ID does not start with 'td-', the prefix is added.
+    Reads an SVG file, ensures all <symbol> elements have an ID prefixed with `prefix`.
+    If an ID does not start with `prefix`, the prefix is added.
     Returns the modified SVG content as a string.
 
     This function attempts to handle SVGs with or without explicit namespace declarations.
@@ -25,6 +30,16 @@ def add_td_prefix_to_symbols(
     :param svg_path: Path to the input SVG file. Defaults to 'icons.svg' in the script's directory.
     :return: The modified SVG content as a string.
     """
+
+    if svg_path.is_dir():
+        if svg_path.name != "icons":
+            svg_path = svg_path / "assets/icons"
+
+        svg_path = svg_path / "i.svg"
+
+    prefix = prefix or svg_path.stem.strip()
+    prefix = f"{prefix}:" if prefix[-1] != ":" else prefix
+
     # Register the default SVG namespace.
     # This helps if the input SVG uses it, ensuring correct parsing and output formatting.
     # Even if the SVG doesn't use it, registering it is harmless for parsing.
@@ -56,8 +71,8 @@ def add_td_prefix_to_symbols(
     # Iterate through each found symbol and check/modify its 'id' attribute
     for symbol in symbols:
         current_id = symbol.get("id")
-        if current_id and not current_id.startswith("td-"):
-            symbol.set("id", f"td-{current_id}")
+        if current_id and not current_id.startswith(prefix):
+            symbol.set("id", f"{prefix}{current_id}")
 
     # Convert the modified ElementTree back to a string
     # Using 'unicode' encoding returns a string, xml_declaration=False avoids adding <?xml...?> if not present

@@ -1,6 +1,7 @@
 src/**/*.html
 .docs/
-
+src/temp/
+website/
 
 .fitten/
 .vscode
