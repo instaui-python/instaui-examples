@@ -5,18 +5,18 @@ from pathlib import Path
 from instaui import ui
 from instaui_tdesign import td, locales
 from instaui_shiki import cdn as shiki_cdn
-from instaui_echarts import cdn as echarts_cdn
+from instaui_echarts import cdn as echarts_cdn, __version__ as echarts_version
 
 SRC_DIR = Path(__file__).resolve().parent.parent
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-import components
-from utils import chart_example, I18nState
+from utils import I18nState
 from shared.lang_select import lang_select
 from shared.navigation import navigation_tree, NavItem
+from shared.dependency_view import dependencies_zone
 from shared.website_utils import zero_dist_to_website
-
+from shared.example_extractor import example_view
 
 td.use(theme="violet", locale="en_US")
 
@@ -39,10 +39,17 @@ def home():
             with ui.container(size="4"), ui.column(gap="4"):
                 ui.heading(_("instaui-echarts 示例"))
 
-                components.dependencies_zone()
+                dependencies_zone(
+                    [
+                        "instaui[web]",
+                        f"instaui_echarts>={echarts_version}",
+                        f"instaui_tdesign>={td.__version__}",
+                        "polars",
+                    ]
+                )
 
                 for info in infos:
-                    chart_example(info)
+                    example_view(info)
 
             td.back_top(container=".insta-main", shape="circle", theme="primary")
 
@@ -56,7 +63,7 @@ def build_state_html():
     )
 
 
-ui.server(debug=True).run()
+# ui.server(debug=True).run()
 
 if __name__ == "__main__":
     build_state_html()

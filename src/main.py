@@ -5,10 +5,7 @@ import subprocess
 SRC_ROOT = Path(__file__).parent
 
 if __name__ == "__main__":
-    startup_moudles = [
-        "index",
-        "echarts",
-    ]
+    startup_moudles = ["index", "echarts", "shiki"]
 
     for module_name in startup_moudles:
         module_root = SRC_ROOT / module_name
