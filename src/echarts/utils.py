@@ -1,10 +1,16 @@
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Callable, Optional
 from instaui import ui
 from instaui_shiki import shiki
 from instaui_tdesign import td
 import inspect
 import textwrap
+from shared.lang_select import I18nPageState
+
+
+class I18nState(I18nPageState, locale_dir=Path(__file__).parent / "locale"):
+    pass
 
 
 @dataclass

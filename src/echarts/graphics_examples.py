@@ -2,14 +2,13 @@ import polars as pl
 from instaui import ui
 from instaui_tdesign import td
 from instaui_echarts import graphics as gh, echarts
-from utils import use_example_infos
-import state
+from utils import use_example_infos, I18nState
 
 
 m_tdesign_import = "from instaui_tdesign import td"
 m_polars_import = "import polars as pl"
 
-_ = state.I18nPageState.get()
+_ = I18nState.get()
 example, infos = use_example_infos()
 
 

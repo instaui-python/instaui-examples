@@ -1,13 +1,14 @@
 import sys
 from pathlib import Path
 
-# 获取 src 的路径（上上级目录）
+
+from instaui import ui
+from instaui_tdesign import td, locales
+
 SRC_DIR = Path(__file__).resolve().parent.parent
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from instaui import ui
-from instaui_tdesign import td, locales
 from shared.lang_select import lang_select, I18nPageState
 from shared.website_utils import zero_dist_to_website
 
@@ -56,8 +57,13 @@ def card(icon: str, title: str, description: str, url_name: str):
         ui.text(description, size="4", weight="light")
 
 
-zero_dist_to_website(
-    home,
-    base_folder=Path(__file__).parent,
-    file="index.html",
-)
+def build_state_html():
+    zero_dist_to_website(
+        home,
+        base_folder=Path(__file__).parent,
+        file="index.html",
+    )
+
+
+if __name__ == "__main__":
+    build_state_html()

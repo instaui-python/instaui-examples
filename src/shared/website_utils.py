@@ -6,6 +6,9 @@ import xml.etree.ElementTree as ET
 
 WEBSITE_DIR = Path(__file__).parent.parent.parent / "website"
 
+if not WEBSITE_DIR.exists():
+    WEBSITE_DIR.mkdir()
+
 
 def zero_dist_to_website(
     render_fn: Callable, *, base_folder: Path, file: str, cdns: Optional[list] = None
