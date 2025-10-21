@@ -1,8 +1,6 @@
 import sys
 from pathlib import Path
-
-
-from instaui import ui
+from instaui import ui, html
 from instaui_tdesign import td, locales
 
 SRC_DIR = Path(__file__).resolve().parent.parent
@@ -11,6 +9,7 @@ if str(SRC_DIR) not in sys.path:
 
 from shared.lang_select import lang_select, I18nPageState
 from shared.website_utils import zero_dist_to_website
+from shared.page_header import header_view
 
 td.use(theme="violet", locale="en_US")
 
@@ -25,9 +24,11 @@ def home():
     _ = I18nState.get()
 
     with td.config_provider(global_config=locale_dict):
-        lang_select()
-
         with ui.container():
+            header_view(
+                github_link="https://github.com/instaui-python/instaui-examples"
+            )
+
             with ui.row(justify="center", mb="3"):
                 ui.text("Insta-UI", size="7", weight="bold").style("color: green;")
                 ui.text(_(" 示例"), size="7", weight="bold")
@@ -35,10 +36,18 @@ def home():
             with ui.grid(columns=ui.grid.auto_columns(min_width="280px")):
                 card("i:feather", "instaui", _("基础库"), "./instaui")
                 card(
-                    "i:chart", "instaui echarts", _("Echarts 图表"), "./instaui-echarts"
+                    "i:chart",
+                    "instaui echarts",
+                    _("Echarts 图表"),
+                    "./instaui-echarts",
                 )
                 card("i:code", "instaui shiki", _("代码高亮"), "./instaui-shiki")
-                card("i:td", "instaui tdesign", _("TDesign 组件"), "./instaui-tdesign")
+                card(
+                    "i:td",
+                    "instaui tdesign",
+                    _("TDesign 组件"),
+                    "./instaui-tdesign",
+                )
 
 
 def card(icon: str, title: str, description: str, url_name: str):
@@ -64,6 +73,8 @@ def build_state_html():
         file="index.html",
     )
 
+
+# ui.server(debug=True).run()
 
 if __name__ == "__main__":
     build_state_html()

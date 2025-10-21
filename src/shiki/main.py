@@ -10,13 +10,13 @@ SRC_DIR = Path(__file__).resolve().parent.parent
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
+
 from utils import I18nState
-from shared.lang_select import lang_select
 from shared.navigation import navigation_tree, NavItem
 from shared.dependency_view import dependencies_zone
 from shared.website_utils import zero_dist_to_website
 from shared.example_extractor import example_view
-
+from shared.page_header import header_view
 
 td.use(theme="violet", locale="en_US")
 
@@ -29,7 +29,9 @@ def home():
     _ = I18nState.get()
 
     with td.config_provider(global_config=locale_dict):
-        lang_select()
+        header_view(
+            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/shiki"
+        )
 
         with ui.grid(columns="auto 1fr"):
             navigation_tree(

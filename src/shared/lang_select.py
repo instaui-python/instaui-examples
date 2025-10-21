@@ -58,9 +58,13 @@ return isZh? 'zh_CN' : 'en_US';
 }""",
     )
 
-    return td.select(
-        options=options,
-        value=current,
-        borderless=True,
-        auto_width=True,
-    ).on_mounted(mounted)
+    return (
+        td.select(
+            options=options,
+            value=current,
+            borderless=True,
+            auto_width=True,
+        )
+        .on_mounted(mounted)
+        .style("width:unset;")
+    )
