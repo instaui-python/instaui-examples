@@ -2,8 +2,8 @@ import sys
 from pathlib import Path
 
 
-from instaui import ui
-from instaui_tdesign import td, locales
+from instaui import ui, cdn
+from instaui_tdesign import td, locales, cdn as td_cdn
 from instaui_shiki import cdn as shiki_cdn, __version__ as shiki_version
 
 SRC_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +30,8 @@ def home():
 
     with td.config_provider(global_config=locale_dict):
         header_view(
-            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/shiki"
+            title=_("instaui-shiki 示例"),
+            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/shiki",
         )
 
         with ui.grid(columns="auto 1fr"):
@@ -39,12 +40,11 @@ def home():
             )
 
             with ui.container(size="4"), ui.column(gap="4"):
-                ui.heading(_("instaui-shiki 示例"))
-
                 dependencies_zone(
                     [
                         "instaui[web]",
                         f"instaui_shiki>={shiki_version}",
+                        f"instaui_tdesign>={td.__version__}",
                     ]
                 )
 
@@ -58,7 +58,7 @@ def build_state_html():
     zero_dist_to_website(
         home,
         base_folder=Path(__file__).parent,
-        cdns=[shiki_cdn.override()],
+        cdns=[shiki_cdn.override(), cdn.override(), td_cdn.override()],
         file="instaui-shiki.html",
     )
 

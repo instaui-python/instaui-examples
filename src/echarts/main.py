@@ -28,9 +28,10 @@ def home():
     locale_dict, _ = locales.use_locale_dict(type="client")
     _ = I18nState.get()
 
-    with td.config_provider(global_config=locale_dict), ui.container(size="4"):
+    with td.config_provider(global_config=locale_dict):
         header_view(
-            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/echarts"
+            title=_("instaui-echarts 示例"),
+            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/echarts",
         )
 
         with ui.grid(columns="auto 1fr"):
@@ -39,8 +40,6 @@ def home():
             )
 
             with ui.container(size="4"), ui.column(gap="4"):
-                ui.heading(_("instaui-echarts 示例"))
-
                 dependencies_zone(
                     [
                         "instaui[web]",
