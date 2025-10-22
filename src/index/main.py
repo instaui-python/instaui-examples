@@ -34,29 +34,26 @@ def home():
                 ui.text(_(" 示例"), size="7", weight="bold")
 
             with ui.grid(columns=ui.grid.auto_columns(min_width="280px")):
-                card("i:feather", "instaui", _("基础库"), "./instaui")
+                card("i:feather", "instaui", _("基础库"), "./instaui.html")
                 card(
                     "i:chart",
                     "instaui echarts",
                     _("Echarts 图表"),
-                    "./instaui-echarts",
+                    "./instaui-echarts.html",
                 )
-                card("i:code", "instaui shiki", _("代码高亮"), "./instaui-shiki")
+                card("i:code", "instaui shiki", _("代码高亮"), "./instaui-shiki.html")
                 card(
                     "i:td",
                     "instaui tdesign",
                     _("TDesign 组件"),
-                    "./instaui-tdesign",
+                    "./instaui-tdesign.html",
                 )
 
 
 def card(icon: str, title: str, description: str, url_name: str):
-    link_to = ui.js_event(code="url=> window.location.href = url")
-
     with (
-        td.card(hover_shadow=True)
-        .style("cursor: pointer;")
-        .on("click", link_to, extends=[url_name]) as card
+        html.link(url_name).props({"target": "_blank"}).style("text-decoration:none;"),
+        td.card(hover_shadow=True) as card,
     ):
         with card.add_slot("title"):
             with ui.row(align="center"):

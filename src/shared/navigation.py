@@ -33,12 +33,12 @@ return items.filter(item => item.title.toLowerCase().includes(search_text)  || i
 }""",
     )
 
-    with td.affix(offset_top=50):
+    with ui.box(), td.affix():
         with ui.column(mt="4"):
             td.input(search_input, clearable=True)
-            with td.anchor(target_offset=200):
-                with ui.vfor(items) as info:
-                    td.anchor_item(
-                        title=info["title"],
-                        href=info["href"],
-                    )
+        with td.anchor():
+            with ui.vfor(items) as info:
+                td.anchor_item(
+                    title=info["title"],
+                    href=info["href"],
+                )
