@@ -3,6 +3,7 @@ from instaui import zero, cdn
 from instaui_tdesign import cdn as td_cdn
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from .cmd import parse_offline_flag
 
 WEBSITE_DIR = Path(__file__).parent.parent.parent / "website"
 
@@ -13,9 +14,14 @@ if not WEBSITE_DIR.exists():
 def zero_dist_to_website(
     render_fn: Callable, *, base_folder: Path, file: str, cdns: Optional[list] = None
 ):
+    offline = parse_offline_flag()
+    cdn_resource_overrides = (
+        None if offline else [cdn.override(), td_cdn.override(), *(cdns or [])]
+    )
+
     zero(
         icons_svg_path=lambda: add_td_prefix_to_symbols(base_folder),
-        cdn_resource_overrides=[cdn.override(), td_cdn.override(), *(cdns or [])],
+        cdn_resource_overrides=cdn_resource_overrides,
     ).to_html(render_fn, file=WEBSITE_DIR / file)
 
 

@@ -10,6 +10,7 @@ if str(SRC_DIR) not in sys.path:
 from shared.lang_select import lang_select, I18nPageState
 from shared.website_utils import zero_dist_to_website
 from shared.page_header import header_view
+from shared.cmd import parse_offline_flag
 
 td.use(theme="violet", locale="en_US")
 
