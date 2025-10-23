@@ -64,7 +64,7 @@ def build_state_html():
     )
 
 
-ui.server(debug=True).run()
+# ui.server(debug=True).run()
 
 if __name__ == "__main__":
     build_state_html()

@@ -8,7 +8,7 @@ if __name__ == "__main__":
     offline = parse_offline_flag()
     print(f"Offline mode: {offline}")
 
-    startup_moudles = ["index", "echarts", "shiki"]
+    startup_moudles = ["index", "echarts", "shiki", "gallery/etch_sketch"]
 
     for module_name in startup_moudles:
         module_root = SRC_ROOT / module_name

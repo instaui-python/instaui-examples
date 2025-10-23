@@ -7,10 +7,9 @@ SRC_DIR = Path(__file__).resolve().parent.parent
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from shared.lang_select import lang_select, I18nPageState
+from shared.lang_select import I18nPageState
 from shared.website_utils import zero_dist_to_website
 from shared.page_header import header_view
-from shared.cmd import parse_offline_flag
 
 td.use(theme="violet", locale="en_US")
 
@@ -27,7 +26,8 @@ def home():
     with td.config_provider(global_config=locale_dict):
         with ui.container():
             header_view(
-                github_link="https://github.com/instaui-python/instaui-examples"
+                home_icon_level=None,
+                github_link="https://github.com/instaui-python/instaui-examples",
             )
 
             with ui.row(justify="center", my="3"):
@@ -48,6 +48,21 @@ def home():
                     "instaui tdesign",
                     _("TDesign 组件"),
                     "./instaui-tdesign.html",
+                )
+
+            td.divider()
+
+            with ui.box(mb="3", as_child=True):
+                ui.heading(_("更多示例"))
+
+            with ui.grid(
+                columns=ui.grid.auto_columns(min_width="280px", mode="auto-fill")
+            ):
+                card(
+                    "i:gallery",
+                    "etch sketch",
+                    "etch sketch(solid js example)",
+                    "./gallery/etch_sketch.html",
                 )
 
 

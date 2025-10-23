@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-20 20:55+0800\n"
+"POT-Creation-Date: 2025-10-24 01:50+0800\n"
 "PO-Revision-Date: 2025-10-20 18:53+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -26,16 +26,24 @@ msgstr ""
 msgid "基础库"
 msgstr ""
 
-#: main.py:38
+#: main.py:41
 msgid "Echarts 图表"
 msgstr ""
 
-#: main.py:39
+#: main.py:44
 msgid "代码高亮"
 msgstr ""
 
-#: main.py:40
+#: main.py:48
 msgid "TDesign 组件"
+msgstr ""
+
+#: main.py:54
+msgid "更多示例"
+msgstr ""
+
+#: main.py:62
+msgid "示例集"
 msgstr ""
 
 #~ msgid "Echarts 图表库"

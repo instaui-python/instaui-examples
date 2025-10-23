@@ -12,15 +12,29 @@ if not WEBSITE_DIR.exists():
 
 
 def zero_dist_to_website(
-    render_fn: Callable, *, base_folder: Path, file: str, cdns: Optional[list] = None
+    render_fn: Callable,
+    *,
+    file: str,
+    cdns: Optional[list] = None,
+    base_folder: Optional[Path] = None,
 ):
     offline = parse_offline_flag()
     cdn_resource_overrides = (
         None if offline else [cdn.override(), td_cdn.override(), *(cdns or [])]
     )
 
+    file_path = WEBSITE_DIR / file
+    if not file_path.parent.exists():
+        file_path.parent.mkdir(parents=True)
+
+    icons_svg_path = (
+        (lambda: add_td_prefix_to_symbols(base_folder))
+        if base_folder is not None
+        else None
+    )
+
     zero(
-        icons_svg_path=lambda: add_td_prefix_to_symbols(base_folder),
+        icons_svg_path=icons_svg_path,
         cdn_resource_overrides=cdn_resource_overrides,
     ).to_html(render_fn, file=WEBSITE_DIR / file)
 
