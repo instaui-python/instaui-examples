@@ -1,7 +1,7 @@
 src/**/*.html
 .docs/
 src/temp/
-website/
+# website/
 
 .fitten/
 .vscode
