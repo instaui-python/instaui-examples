@@ -45,7 +45,7 @@ jobs:
           mkdir -p website
 
       - name: Run main.py to generate HTML
-        run: uv run src/main.py
+        run: uv run src/main.py --offline
 
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
