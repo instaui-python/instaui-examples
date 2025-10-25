@@ -22,3 +22,5 @@ if __name__ == "__main__":
             cwd=module_root,
             check=True,
         )
+
+    print("✅ All html pages generated successfully. see website folder.")
