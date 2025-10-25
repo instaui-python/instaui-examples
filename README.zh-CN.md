@@ -19,11 +19,6 @@
 
 你需要安装好 `uv`。
 
-初始化环境
-```shell
-uv sync --all-groups
-```
-
 生成离线本地网页
 ```shell
 uv run src/main.py --offline
