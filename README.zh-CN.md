@@ -19,6 +19,17 @@
 
 你需要安装好 `uv`。
 
+
+克隆项目到本地
+```shell
+git clone https://gitee.com/carson_add/instaui-examples
+```
+
+cd 到项目根目录
+```shell
+cd instaui-examples
+```
+
 生成离线本地网页
 ```shell
 uv run src/main.py --offline
