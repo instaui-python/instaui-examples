@@ -29,9 +29,12 @@ def index():
             ui.text(s)
 
         @example(
-            N_("只读状态-computed"), "only-read-computed", imports=[m_tdesign_import]
+            N_("只读状态-computed(服务端)"),
+            "only-read-computed-server",
+            imports=[m_tdesign_import],
+            translation_mapping={"d1": N_("函数在服务端执行")},
         )
-        def computed():
+        def computed_server():
             s = ui.state("hello world")
 
             # mark
@@ -40,10 +43,28 @@ def index():
             # to
             # @ui.computed(inputs=[s])
             # def new_text(old: str):
+            #     # [!code highlight:1]
+            #     # N_(d1)
             #     return f"new: {old}"
             # end-to
 
             # end-mark
+
+            # ui
+            td.input(s)
+            ui.text(new_text)
+
+        @example(
+            N_("只读状态-js_computed(客户端)"),
+            "only-read-computed-client",
+            imports=[m_tdesign_import],
+            translation_mapping={"d1": N_("计算无须经过服务端")},
+        )
+        def computed_client():
+            s = ui.state("hello world")
+            # [!code highlight:1]
+            # N_(d1)
+            new_text = ui.js_computed(inputs=[s], code=r"s=> `new: ${s}`")
 
             # ui
             td.input(s)

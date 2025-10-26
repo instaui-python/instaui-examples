@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-26 16:31+0800\n"
+"POT-Creation-Date: 2025-10-27 01:58+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -18,24 +18,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: main.py:32
+#: main.py:35
 msgid "instaui 示例"
 msgstr "instaui examples"
 
-#: views.py:15
+#: views.py:17
 msgid "模板"
 msgstr "Templates"
 
-#: views.py:21
+#: views.py:23
 #, fuzzy
 msgid "可读写状态-state"
 msgstr "Read-Write Status"
 
-#: views.py:29
-msgid "只读状态-computed"
-msgstr "Read-Only Status (Computed)"
+#: views.py:32
+#, fuzzy
+msgid "只读状态-computed(服务端)"
+msgstr "Read-Only Status (Server-side)"
 
-#: views.py:39
+#: views.py:35
+msgid "函数在服务端执行"
+msgstr "Function is executed on the server"
+
+#: views.py:58
+#, fuzzy
+msgid "只读状态-js_computed(客户端)"
+msgstr "Read-Only Status (Server-side)"
+
+#: views.py:61
+msgid "计算无须经过服务端"
+msgstr "Computation does not require a server"
+
+#: views.py:75
 msgid "绑定样式"
 msgstr "Binding Style"
 
