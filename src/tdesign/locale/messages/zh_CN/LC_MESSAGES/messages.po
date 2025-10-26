@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-26 20:12+0800\n"
+"POT-Creation-Date: 2025-10-27 01:25+0800\n"
 "PO-Revision-Date: 2025-10-26 18:56+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -30,15 +30,19 @@ msgstr ""
 msgid "普通使用"
 msgstr ""
 
-#: views.py:26
+#: views.py:27
 msgid "列插槽"
 msgstr ""
 
-#: views.py:43
+#: views.py:29
+msgid "必须使用`ui.state`，否则数据是无法更新的"
+msgstr ""
+
+#: views.py:48
 msgid "其他"
 msgstr ""
 
-#: views.py:45
+#: views.py:50
 msgid "按钮"
 msgstr ""
 

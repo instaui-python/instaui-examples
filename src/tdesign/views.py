@@ -23,9 +23,14 @@ def index():
 
             td.table(data)
 
-        @example(N_("列插槽"), "table-column-slot")
+        @example(
+            N_("列插槽"),
+            "table-column-slot",
+            translation_mapping={"d1": N_("必须使用`ui.state`，否则数据是无法更新的")},
+        )
         def table_column_slot():
-            data = ui.state(
+            # N_(d1)
+            data = ui.state(  # [!code highlight]
                 [
                     {"name": "foo", "age": 10, "btn": "", "input-name": ""},
                     {"name": "bar", "age": 20, "btn": "", "input-name": ""},

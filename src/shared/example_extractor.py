@@ -18,6 +18,7 @@ class ExampleInfo:
     children: list[ExampleInfo] = field(default_factory=list)
     imports: Optional[list[str]] = field(default_factory=list)
     ignore_indent_condition: Optional[Callable[[str], bool]] = None
+    translation_mapping: Optional[dict[str, str]] = None
 
 
 def get_function_body(
@@ -89,7 +90,9 @@ def transform_mark_blocks(code: str) -> str:
     return "".join(result)
 
 
-def use_example_infos(require_imports: Optional[list[str]] = None):
+def use_example_infos(
+    require_imports: Optional[list[str]] = None,
+):
     infos: list[ExampleInfo] = []
     current_node: Optional[ExampleInfo] = None
 
@@ -98,6 +101,8 @@ def use_example_infos(require_imports: Optional[list[str]] = None):
         title_id: str,
         imports: Optional[list[str]] = None,
         ignore_indent_condition: Optional[Callable[[str], bool]] = None,
+        *,
+        translation_mapping: Optional[dict[str, str]] = None,
     ):
         def wrapper(fn: Callable):
             info = ExampleInfo(
@@ -106,6 +111,7 @@ def use_example_infos(require_imports: Optional[list[str]] = None):
                 fn,
                 imports=[*(imports or []), *(require_imports or [])],
                 ignore_indent_condition=ignore_indent_condition,
+                translation_mapping=translation_mapping,
             )
 
             if current_node:
@@ -144,7 +150,32 @@ def example_view(info: ExampleInfo):
 
     fn_code = transform_mark_blocks(fn_code)
 
-    code = f"""
+    if info.translation_mapping:
+        code = ui.js_computed(
+            inputs=[
+                imports_code,
+                fn_code,
+                ui.unwrap_reactive(info.translation_mapping),
+            ],
+            code=r"""(imports_code, code, t_data)=>{
+    const realCode = code.replace(/# N_\((\w+)\)/g, (match, key) => {
+        // 如果映射里有对应的 key，就替换，否则保留原文
+        return t_data[key] ? `# ${t_data[key]}` : match;
+    });
+
+    return `
+${imports_code}
+
+@ui.page()
+def index():
+${realCode}
+
+ui.server(debug=True).run()
+`
+}""",
+        )
+    else:
+        code = f"""
 {imports_code}
 
 @ui.page()
@@ -152,7 +183,7 @@ def index():
 {fn_code}
 
 ui.server(debug=True).run()
-"""
+    """
 
     with (
         td.card(title=info.title, header_bordered=True).props(
@@ -162,7 +193,7 @@ ui.server(debug=True).run()
     ):
         with td.card(body_style={"height": "100%"}):
             info.fn()
-        shiki(code, line_numbers=True)
+        shiki(code, line_numbers=True, transformers=["notationHighlight"])
 
 
 def example_list_view(infos: list[ExampleInfo]):

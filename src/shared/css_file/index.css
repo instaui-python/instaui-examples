@@ -1,0 +1,8 @@
+.shiki-code .line.highlighted {
+    background-color: rgb(193 93 31 / 14%);
+    transition: background-color .5s;
+    margin: 0 -24px;
+    padding: 0 24px;
+    width: calc(100% + 48px);
+    display: inline-block;
+}

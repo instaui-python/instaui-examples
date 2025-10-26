@@ -17,13 +17,12 @@ from shared.website_utils import zero_dist_to_website
 from shared.example_extractor import example_list_view
 from shared.page_header import header_view
 from shared.cmd import parse_no_server_flag
+from shared.css import apply_css
 import views
 
 td.use(theme="violet", locale="en_US")
 
-
-def _t(s):
-    return s  # 仅用于 Babel 提取
+apply_css()
 
 
 @ui.page()
