@@ -18,8 +18,10 @@ from shared.dependency_view import dependencies_zone
 from shared.website_utils import zero_dist_to_website
 from shared.example_extractor import example_list_view
 from shared.page_header import header_view
+from shared.css import apply_css
 
 td.use(theme="violet", locale="en_US")
+apply_css()
 
 
 @ui.page()

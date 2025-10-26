@@ -12,8 +12,10 @@ from shared.cmd import parse_no_server_flag
 from shared.lang_select import I18nPageState
 from shared.website_utils import zero_dist_to_website
 from shared.page_header import header_view
+from shared.css import apply_css
 
 td.use(theme="violet", locale="en_US")
+apply_css()
 
 
 class I18nState(I18nPageState, locale_dir=Path(__file__).parent / "locale"):
