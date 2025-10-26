@@ -8,7 +8,7 @@ dependencies = [
     "instaui-echarts>=0.4.2",
     "instaui-shiki>=0.5.2",
     "instaui-tdesign[all]",
-    "instaui[web]>=0.7.4",
+    "instaui[web]>=0.7.5",
     "pandas>=2.3.2",
     "polars>=1.34.0",
 ]

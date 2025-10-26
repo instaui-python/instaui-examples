@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-26 17:18+0800\n"
-"PO-Revision-Date: 2025-10-18 20:31+0800\n"
+"POT-Creation-Date: 2025-10-26 16:31+0800\n"
+"PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -18,33 +18,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#~ msgid "instaui-echarts 示例集"
+#: main.py:32
+msgid "instaui 示例"
+msgstr ""
+
+#: views.py:15
+msgid "模板"
+msgstr ""
+
+#: views.py:21
+msgid "可读写状态-state"
+msgstr ""
+
+#: views.py:29
+msgid "只读状态-computed"
+msgstr ""
+
+#: views.py:39
+msgid "绑定样式"
+msgstr ""
+
+#~ msgid "快速开始"
 #~ msgstr ""
 
-#~ msgid "折线图"
+#~ msgid "可读写状态"
 #~ msgstr ""
 
-#~ msgid "折线图（按颜色分组）"
-#~ msgstr ""
-
-#~ msgid "折线图（按分面分组）"
-#~ msgstr ""
-
-#~ msgid "柱状图"
-#~ msgstr ""
-
-#~ msgid "联动"
-#~ msgstr ""
-
-#~ msgid "使用 polars 作为数据源"
-#~ msgstr ""
-
-#~ msgid "坐标轴排序-利用数据间接实现"
-#~ msgstr ""
-
-#~ msgid "坐标轴排序-axis api"
-#~ msgstr ""
-
-#~ msgid "instaui-echarts 示例"
+#~ msgid "状态绑定"
 #~ msgstr ""
 

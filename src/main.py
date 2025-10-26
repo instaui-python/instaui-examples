@@ -8,7 +8,7 @@ if __name__ == "__main__":
     offline = parse_offline_flag()
     print(f"Offline mode: {offline}")
 
-    startup_moudles = ["index", "echarts", "shiki", "gallery/etch_sketch"]
+    startup_moudles = ["index", "instaui", "echarts", "shiki", "gallery/etch_sketch"]
 
     for module_name in startup_moudles:
         module_root = SRC_ROOT / module_name
@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
         # uv run main.py
         subprocess.run(
-            ["uv", "run", "main.py", "--offline" if offline else ""],
+            ["uv", "run", "main.py", "--no-server", "--offline" if offline else ""],
             cwd=module_root,
             check=True,
         )

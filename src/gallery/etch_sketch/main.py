@@ -9,7 +9,7 @@ if str(SRC_DIR) not in sys.path:
 
 from shared.website_utils import zero_dist_to_website
 from shared.page_header import header_view
-from shared.cmd import parse_offline_flag
+from shared.cmd import parse_no_server_flag
 from instaui import ui, html
 
 # https://www.solidjs.com/examples/ethasketch
@@ -68,7 +68,8 @@ def index():
                     ui.element("div").classes("cell").on("mouseenter", mouse_enter)
 
 
-# ui.server(debug=True).run()
+if not parse_no_server_flag():
+    ui.server(debug=True).run()
 
 
 def build_html():

@@ -10,11 +10,11 @@ m_tdesign_import = "from instaui_tdesign import td"
 m_polars_import = "import polars as pl"
 m_echarts_import = "from instaui_echarts import graphics as gh, echarts"
 
-_ = I18nState.get()
-example, infos = use_example_infos(require_imports=[m_echarts_import])
+_t = I18nState.get()
+example, infos, _ = use_example_infos(require_imports=[m_echarts_import])
 
 
-@example(_("折线图"), "line chart")
+@example(_t("折线图"), "line chart")
 def line_base():
     options = gh.option(
         gh.data(
@@ -34,7 +34,7 @@ def line_base():
     echarts(options)
 
 
-@example(_("折线图（按颜色分组）"), "line chart by color")
+@example(_t("折线图（按颜色分组）"), "line chart by color")
 def line_by_color():
     options = gh.option(
         gh.data(
@@ -52,7 +52,7 @@ def line_by_color():
     echarts(options)
 
 
-@example(_("折线图（按分面分组）"), "line chart by facet")
+@example(_t("折线图（按分面分组）"), "line chart by facet")
 def line_by_facet():
     options = gh.option(
         gh.data(
@@ -69,7 +69,7 @@ def line_by_facet():
     echarts(options)
 
 
-@example(_("柱状图"), "bar chart")
+@example(_t("柱状图"), "bar chart")
 def bar_base():
     options = gh.option(
         gh.data(
@@ -90,7 +90,7 @@ def bar_base():
 
 
 @example(
-    _("联动"),
+    _t("联动"),
     "interactive",
     imports=[m_tdesign_import],
 )
@@ -117,7 +117,7 @@ def reactive_anything():
 
 
 @example(
-    _("使用 polars 作为数据源"),
+    _t("使用 polars 作为数据源"),
     "polars data source",
     imports=[m_tdesign_import, m_polars_import],
 )
@@ -139,7 +139,7 @@ def data_with_polars():
 
 
 @example(
-    _("坐标轴排序-利用数据间接实现"),
+    _t("坐标轴排序-利用数据间接实现"),
     "axis sort by data",
     imports=[m_tdesign_import, m_polars_import],
 )
@@ -161,7 +161,7 @@ def axis_sort_by_data():
 
 
 @example(
-    _("坐标轴排序-axis api"),
+    _t("坐标轴排序-axis api"),
     "axis sort by axis api",
     imports=[m_tdesign_import, m_polars_import],
 )

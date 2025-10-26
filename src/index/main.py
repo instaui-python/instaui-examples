@@ -3,10 +3,12 @@ from pathlib import Path
 from instaui import ui, html
 from instaui_tdesign import td, locales
 
+
 SRC_DIR = Path(__file__).resolve().parent.parent
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
+from shared.cmd import parse_no_server_flag
 from shared.lang_select import I18nPageState
 from shared.website_utils import zero_dist_to_website
 from shared.page_header import header_view
@@ -21,7 +23,7 @@ class I18nState(I18nPageState, locale_dir=Path(__file__).parent / "locale"):
 @ui.page()
 def home():
     locale_dict, _ = locales.use_locale_dict(type="client")
-    _ = I18nState.get()
+    _t = I18nState.get()
 
     with td.config_provider(global_config=locale_dict):
         with ui.container():
@@ -32,28 +34,28 @@ def home():
 
             with ui.row(justify="center", my="3"):
                 ui.text("Insta-UI", size="7", weight="bold").style("color: green;")
-                ui.text(_(" 示例"), size="7", weight="bold")
+                ui.text(_t(" 示例"), size="7", weight="bold")
 
             with ui.grid(columns=ui.grid.auto_columns(min_width="280px")):
-                card("i:feather", "instaui", _("基础库"), "./instaui.html")
+                card("i:feather", "instaui", _t("基础库"), "./instaui.html")
                 card(
                     "i:chart",
                     "instaui echarts",
-                    _("Echarts 图表"),
+                    _t("Echarts 图表"),
                     "./instaui-echarts.html",
                 )
-                card("i:code", "instaui shiki", _("代码高亮"), "./instaui-shiki.html")
+                card("i:code", "instaui shiki", _t("代码高亮"), "./instaui-shiki.html")
                 card(
                     "i:td",
                     "instaui tdesign",
-                    _("TDesign 组件"),
+                    _t("TDesign 组件"),
                     "./instaui-tdesign.html",
                 )
 
             td.divider()
 
             with ui.box(mb="3", as_child=True):
-                ui.heading(_("更多示例"))
+                ui.heading(_t("更多示例"))
 
             with ui.grid(
                 columns=ui.grid.auto_columns(min_width="280px", mode="auto-fill")
@@ -79,6 +81,10 @@ def card(icon: str, title: str, description: str, url_name: str):
         ui.text(description, size="4", weight="light")
 
 
+if not parse_no_server_flag():
+    ui.server(debug=True).run()
+
+
 def build_state_html():
     zero_dist_to_website(
         home,
@@ -86,8 +92,6 @@ def build_state_html():
         file="index.html",
     )
 
-
-# ui.server(debug=True).run()
 
 if __name__ == "__main__":
     build_state_html()

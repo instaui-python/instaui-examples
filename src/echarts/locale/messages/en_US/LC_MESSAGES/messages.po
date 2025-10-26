@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-20 14:42+0800\n"
+"POT-Creation-Date: 2025-10-26 17:18+0800\n"
 "PO-Revision-Date: 2025-10-18 20:31+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -18,40 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: graphics_examples.py:16
-msgid "折线图"
-msgstr "Line Chart"
+#~ msgid "折线图"
+#~ msgstr "Line Chart"
 
-#: graphics_examples.py:36
-msgid "折线图（按颜色分组）"
-msgstr "Line Chart (Grouped by Color)"
+#~ msgid "折线图（按颜色分组）"
+#~ msgstr "Line Chart (Grouped by Color)"
 
-#: graphics_examples.py:54
-msgid "折线图（按分面分组）"
-msgstr "Line Chart (Grouped by Facet)"
+#~ msgid "折线图（按分面分组）"
+#~ msgstr "Line Chart (Grouped by Facet)"
 
-#: graphics_examples.py:71
-msgid "柱状图"
-msgstr "Bar Chart"
+#~ msgid "柱状图"
+#~ msgstr "Bar Chart"
 
-#: graphics_examples.py:92
-msgid "联动"
-msgstr "Reactite Anything"
+#~ msgid "联动"
+#~ msgstr "Reactite Anything"
 
-#: graphics_examples.py:119
-msgid "使用 polars 作为数据源"
-msgstr "Use polars as Data Source"
+#~ msgid "使用 polars 作为数据源"
+#~ msgstr "Use polars as Data Source"
 
-#: graphics_examples.py:141
-msgid "坐标轴排序-利用数据间接实现"
-msgstr "Axis Sorting - Indirectly Implement by Data"
+#~ msgid "坐标轴排序-利用数据间接实现"
+#~ msgstr "Axis Sorting - Indirectly Implement by Data"
 
-#: graphics_examples.py:163
-msgid "坐标轴排序-axis api"
-msgstr "Axis Sorting - Axis API"
+#~ msgid "坐标轴排序-axis api"
+#~ msgstr "Axis Sorting - Axis API"
 
-#: index.py:27
-#, fuzzy
-msgid "instaui-echarts 示例"
-msgstr "instaui-echarts Examples"
+#~ msgid "instaui-echarts 示例"
+#~ msgstr "instaui-echarts Examples"
 

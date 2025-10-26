@@ -8,17 +8,17 @@ from utils import I18nState
 m_tdesign_import = "from instaui_tdesign import td"
 m_shiki_import = "from instaui_shiki import shiki"
 
-_ = I18nState.get()
-example, infos = use_example_infos(require_imports=[m_shiki_import])
+_t = I18nState.get()
+example, infos, _ = use_example_infos(require_imports=[m_shiki_import])
 
 
-@example(_("基础使用"), "basic usage")
+@example(_t("基础使用"), "basic usage")
 def base():
     code = 'print("Hello, world!")'
     shiki(code)
 
 
-@example(_("code 参数联动"), "code parameter linkage", imports=[m_tdesign_import])
+@example(_t("code 参数联动"), "code parameter linkage", imports=[m_tdesign_import])
 def code_parameter_linkage():
     code = ui.state('print("Hello, world!")')
 
@@ -26,7 +26,7 @@ def code_parameter_linkage():
     shiki(code)
 
 
-@example(_("diff 标记"), "diff marker")
+@example(_t("diff 标记"), "diff marker")
 def diff_marker():
     code = r"""
 a = 1
@@ -38,7 +38,7 @@ d = 4  # [!code ++]
     shiki(code, transformers=["notationDiff"])
 
 
-@example(_("行高亮标记"), "line highlight marker")
+@example(_t("行高亮标记"), "line highlight marker")
 def line_highlight_marker():
     ui.add_style(r"""
 .line.highlighted{
@@ -66,7 +66,7 @@ c = 3
     shiki(code, transformers=["notationHighlight"])
 
 
-@example(_("单词高亮标记"), "word highlight marker")
+@example(_t("单词高亮标记"), "word highlight marker")
 def word_highlight_marker():
     ui.add_style(r"""
 .highlighted-word {
@@ -85,7 +85,7 @@ print(message) # prints "Hello, world!"
     shiki(code, transformers=["notationWordHighlight"])
 
 
-@example(_("聚焦行"), "focus line")
+@example(_t("聚焦行"), "focus line")
 def focus_line():
     ui.add_style(r"""
 pre.has-focused .line:not(.focused) {
