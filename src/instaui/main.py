@@ -25,12 +25,12 @@ td.use(theme="violet", locale="en_US")
 @ui.page()
 def home():
     locale_dict, _ = locales.use_locale_dict(type="client")
-    _t = I18nState.get()
+    N_ = I18nState.get()
     infos = views.index()
 
     with td.config_provider(global_config=locale_dict):
         header_view(
-            title=_t("instaui 示例"),
+            title=N_("instaui 示例"),
             github_link="https://github.com/instaui-python/instaui",
         )
 

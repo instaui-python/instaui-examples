@@ -9,18 +9,18 @@ m_tdesign_import = "from instaui_tdesign import td"
 def index():
     pass
 
-    _t = I18nState.get()
+    N_ = I18nState.get()
     example, infos, root_node = use_example_infos()
 
     with root_node("入门", "introduction"):
 
-        @example(_t("模板"), "template")
+        @example(N_("模板"), "template")
         def template():
             ui.text("hello world")
 
     with root_node("状态管理", "state manager"):
 
-        @example(_t("可读写状态-state"), "read-write-state", imports=[m_tdesign_import])
+        @example(N_("可读写状态-state"), "read-write-state", imports=[m_tdesign_import])
         def read_write_state():
             s = ui.state("hello world")
 
@@ -29,7 +29,7 @@ def index():
             ui.text(s)
 
         @example(
-            _t("只读状态-computed"), "only-read-computed", imports=[m_tdesign_import]
+            N_("只读状态-computed"), "only-read-computed", imports=[m_tdesign_import]
         )
         def computed():
             s = ui.state("hello world")
@@ -51,7 +51,7 @@ def index():
 
     with root_node("状态绑定", "state-binding"):
 
-        @example(_t("绑定样式"), "style-binding", imports=[m_tdesign_import])
+        @example(N_("绑定样式"), "style-binding", imports=[m_tdesign_import])
         def state_binding():
             color = ui.state("red")
 

@@ -27,11 +27,11 @@ def home():
     from graphics_examples import infos
 
     locale_dict, _ = locales.use_locale_dict(type="client")
-    _t = I18nState.get()
+    N_ = I18nState.get()
 
     with td.config_provider(global_config=locale_dict):
         header_view(
-            title=_t("instaui-echarts 示例"),
+            title=N_("instaui-echarts 示例"),
             github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/echarts",
         )
 

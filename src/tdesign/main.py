@@ -1,10 +1,9 @@
 import sys
 from pathlib import Path
-
-
-from instaui import ui, cdn
+from instaui import ui
 from instaui_tdesign import td, locales, cdn as td_cdn
-from instaui_shiki import cdn as shiki_cdn, __version__ as shiki_version
+from instaui_shiki import cdn as shiki_cdn
+
 
 SRC_DIR = Path(__file__).resolve().parent.parent
 if str(SRC_DIR) not in sys.path:
@@ -12,27 +11,31 @@ if str(SRC_DIR) not in sys.path:
 
 
 from utils import I18nState
-from shared.cmd import parse_no_server_flag
-from shared.navigation import nav_items_from_infos, navigation_tree
+from shared.navigation import navigation_tree, nav_items_from_infos
 from shared.dependency_view import dependencies_zone
 from shared.website_utils import zero_dist_to_website
 from shared.example_extractor import example_list_view
 from shared.page_header import header_view
+from shared.cmd import parse_no_server_flag
+import views
 
 td.use(theme="violet", locale="en_US")
 
 
+def _t(s):
+    return s  # 仅用于 Babel 提取
+
+
 @ui.page()
 def home():
-    from shiki_examples import infos
-
     locale_dict, _ = locales.use_locale_dict(type="client")
     N_ = I18nState.get()
+    infos = views.index()
 
     with td.config_provider(global_config=locale_dict):
         header_view(
-            title=N_("instaui-shiki 示例"),
-            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/shiki",
+            title=N_("instaui-tdesign 示例"),
+            github_link="https://github.com/instaui-python/instaui-tdesign",
         )
 
         with ui.grid(columns="auto 1fr"):
@@ -42,28 +45,27 @@ def home():
                 dependencies_zone(
                     [
                         "instaui[web]",
-                        f"instaui_shiki>={shiki_version}",
                         f"instaui_tdesign>={td.__version__}",
                     ]
                 )
 
                 example_list_view(infos)
 
-        td.back_top(container=".insta-main", shape="circle", theme="primary")
+            td.back_top(container=".insta-main", shape="circle", theme="primary")
 
 
 if not parse_no_server_flag():
     ui.server(debug=True).run()
 
 
-def build_state_html():
+def build_html():
     zero_dist_to_website(
         home,
         base_folder=Path(__file__).parent,
-        cdns=[shiki_cdn.override(), cdn.override(), td_cdn.override()],
-        file="instaui-shiki.html",
+        cdns=[shiki_cdn.override(), td_cdn.override()],
+        file="instaui-tdesign.html",
     )
 
 
 if __name__ == "__main__":
-    build_state_html()
+    build_html()

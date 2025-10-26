@@ -1,0 +1,44 @@
+# Chinese (Simplified, China) translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-10-26 20:12+0800\n"
+"PO-Revision-Date: 2025-10-26 18:56+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_Hans_CN\n"
+"Language-Team: zh_Hans_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: main.py:37
+msgid "instaui-tdesign 示例"
+msgstr ""
+
+#: views.py:15
+msgid "表格"
+msgstr ""
+
+#: views.py:17
+msgid "普通使用"
+msgstr ""
+
+#: views.py:26
+msgid "列插槽"
+msgstr ""
+
+#: views.py:43
+msgid "其他"
+msgstr ""
+
+#: views.py:45
+msgid "按钮"
+msgstr ""
+

@@ -23,7 +23,7 @@ class I18nState(I18nPageState, locale_dir=Path(__file__).parent / "locale"):
 @ui.page()
 def home():
     locale_dict, _ = locales.use_locale_dict(type="client")
-    _t = I18nState.get()
+    N_ = I18nState.get()
 
     with td.config_provider(global_config=locale_dict):
         with ui.container():
@@ -34,28 +34,28 @@ def home():
 
             with ui.row(justify="center", my="3"):
                 ui.text("Insta-UI", size="7", weight="bold").style("color: green;")
-                ui.text(_t(" 示例"), size="7", weight="bold")
+                ui.text(N_(" 示例"), size="7", weight="bold")
 
             with ui.grid(columns=ui.grid.auto_columns(min_width="280px")):
-                card("i:feather", "instaui", _t("基础库"), "./instaui.html")
+                card("i:feather", "instaui", N_("基础库"), "./instaui.html")
                 card(
                     "i:chart",
                     "instaui echarts",
-                    _t("Echarts 图表"),
+                    N_("Echarts 图表"),
                     "./instaui-echarts.html",
                 )
-                card("i:code", "instaui shiki", _t("代码高亮"), "./instaui-shiki.html")
+                card("i:code", "instaui shiki", N_("代码高亮"), "./instaui-shiki.html")
                 card(
                     "i:td",
                     "instaui tdesign",
-                    _t("TDesign 组件"),
+                    N_("TDesign 组件"),
                     "./instaui-tdesign.html",
                 )
 
             td.divider()
 
             with ui.box(mb="3", as_child=True):
-                ui.heading(_t("更多示例"))
+                ui.heading(N_("更多示例"))
 
             with ui.grid(
                 columns=ui.grid.auto_columns(min_width="280px", mode="auto-fill")
