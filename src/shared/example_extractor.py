@@ -144,20 +144,24 @@ def example_view(info: ExampleInfo):
     imports = ["from instaui import ui", *imports]
     imports_code = "\n".join(imports)
 
+    prepage_code = _gen_prepage_code(imports)
+
     fn_code = get_function_body(
         info.fn, ignore_indent_condition=info.ignore_indent_condition
     )
 
     fn_code = transform_mark_blocks(fn_code)
 
-    if info.translation_mapping:
-        code = ui.js_computed(
-            inputs=[
-                imports_code,
-                fn_code,
-                ui.unwrap_reactive(info.translation_mapping),
-            ],
-            code=r"""(imports_code, code, t_data)=>{
+    code = ui.js_computed(
+        inputs=[
+            imports_code,
+            prepage_code,
+            fn_code,
+            ui.unwrap_reactive(info.translation_mapping)
+            if info.translation_mapping
+            else {},
+        ],
+        code=r"""(imports_code, prepage_code, code, t_data)=>{
     const realCode = code.replace(/# N_\((\w+)\)/g, (match, key) => {
         // 如果映射里有对应的 key，就替换，否则保留原文
         return t_data[key] ? `# ${t_data[key]}` : match;
@@ -165,6 +169,7 @@ def example_view(info: ExampleInfo):
 
     return `
 ${imports_code}
+${prepage_code}
 
 @ui.page()
 def index():
@@ -173,17 +178,7 @@ ${realCode}
 ui.server(debug=True).run()
 `
 }""",
-        )
-    else:
-        code = f"""
-{imports_code}
-
-@ui.page()
-def index():
-{fn_code}
-
-ui.server(debug=True).run()
-    """
+    )
 
     with (
         td.card(title=info.title, header_bordered=True).props(
@@ -207,3 +202,13 @@ def example_list_view(infos: list[ExampleInfo]):
                 example_view(child)
         else:
             example_view(info)
+
+
+def _gen_prepage_code(imports: list[str]):
+    lang = ui.use_language()
+    has_import_td = any(i.startswith("from instaui_tdesign") for i in imports)
+
+    return ui.js_computed(
+        inputs=[lang, has_import_td],
+        code=r"""(lang, has_import_td)=> lang===`en_US` && has_import_td ? `td.use(locale="en_US")` : `` """,
+    )
