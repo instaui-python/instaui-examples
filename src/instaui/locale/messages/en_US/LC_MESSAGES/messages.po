@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-27 01:58+0800\n"
+"POT-Creation-Date: 2025-10-28 21:11+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -49,7 +49,21 @@ msgstr "Read-Only Status (Server-side)"
 msgid "计算无须经过服务端"
 msgstr "Computation does not require a server"
 
-#: views.py:75
+#: views.py:73
+msgid "通过索引访问状态"
+msgstr "Access State by Index"
+
+#: views.py:91
+#, fuzzy
+msgid "动态索引访问状态"
+msgstr "Dynamic Access to State"
+
+#: views.py:93
+#, fuzzy
+msgid "你可以通过动态索引访问状态，同时保持其响应性。"
+msgstr "You can access the state by dynamic index and keep it reactive."
+
+#: views.py:108
 msgid "绑定样式"
 msgstr "Binding Style"
 
@@ -58,4 +72,10 @@ msgstr "Binding Style"
 
 #~ msgid "状态绑定"
 #~ msgstr "Status Binding"
+
+#~ msgid "索引"
+#~ msgstr "index"
+
+#~ msgid "你在修改的数据:"
+#~ msgstr "The data you are modifying:"
 

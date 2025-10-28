@@ -14,6 +14,7 @@ from instaui_tdesign import td
 class ExampleInfo:
     title: str
     title_id: str
+    description: str = ""
     fn: Optional[Callable] = None
     children: list[ExampleInfo] = field(default_factory=list)
     imports: Optional[list[str]] = field(default_factory=list)
@@ -99,6 +100,7 @@ def use_example_infos(
     def decorator(
         title: str,
         title_id: str,
+        description: str = "",
         imports: Optional[list[str]] = None,
         ignore_indent_condition: Optional[Callable[[str], bool]] = None,
         *,
@@ -108,6 +110,7 @@ def use_example_infos(
             info = ExampleInfo(
                 title,
                 title_id,
+                description,
                 fn,
                 imports=[*(imports or []), *(require_imports or [])],
                 ignore_indent_condition=ignore_indent_condition,
@@ -181,9 +184,9 @@ ui.server(debug=True).run()
     )
 
     with (
-        td.card(title=info.title, header_bordered=True).props(
-            {"id": f"{info.title_id.lower().replace(' ', '-')}"}
-        ),
+        td.card(
+            title=info.title, header_bordered=True, subtitle=info.description
+        ).props({"id": f"{info.title_id.lower().replace(' ', '-')}"}),
         ui.grid(columns=2),
     ):
         with td.card(body_style={"height": "100%"}):

@@ -70,6 +70,39 @@ def index():
             td.input(s)
             ui.text(new_text)
 
+        @example(N_("通过索引访问状态"), "state-index", imports=[m_tdesign_import])
+        def bind_nested_state_index():
+            data: dict = ui.state(
+                {"names": ["bar", "foo"], "other": {"name": "baz", "age": 30}}
+            )
+
+            with ui.column():
+                ui.text(data, as_="pre")
+
+                td.input(data["names"][0])
+                td.input(data["names"][1])
+                td.input(data["other"]["name"])
+                td.input_number(data["other"]["age"])
+
+        def N_RP_(s1, s2):
+            return s1
+
+        @example(
+            N_("动态索引访问状态"),
+            "dynamic-state-index",
+            description=N_("你可以通过动态索引访问状态，同时保持其响应性。"),
+            imports=[m_tdesign_import],
+        )
+        def bind_nested_state_dynamic_index():
+            data = ui.state(["bar", "foo"])
+            index = ui.state(0)
+
+            with ui.column():
+                ui.text(data, as_="pre")
+
+                td.input_number(index, min=0, max=1, label="idx:")
+                td.input(data[index], label="data[index]:")
+
     with root_node("状态绑定", "state-binding"):
 
         @example(N_("绑定样式"), "style-binding", imports=[m_tdesign_import])
