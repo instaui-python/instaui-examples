@@ -84,9 +84,6 @@ def index():
                 td.input(data["other"]["name"])
                 td.input_number(data["other"]["age"])
 
-        def N_RP_(s1, s2):
-            return s1
-
         @example(
             N_("动态索引访问状态"),
             "dynamic-state-index",
