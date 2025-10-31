@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-28 21:11+0800\n"
+"POT-Creation-Date: 2025-11-01 02:12+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -50,15 +50,31 @@ msgstr ""
 msgid "通过索引访问状态"
 msgstr ""
 
-#: views.py:91
+#: views.py:88
 msgid "动态索引访问状态"
 msgstr ""
 
-#: views.py:93
+#: views.py:90
 msgid "你可以通过动态索引访问状态，同时保持其响应性。"
 msgstr ""
 
-#: views.py:108
+#: views.py:104
+msgid "state 保存数据到本地存储"
+msgstr ""
+
+#: views.py:107
+msgid "你可以将状态保存到本地存储(local storage)，下次打开页面时可以恢复状态。"
+msgstr ""
+
+#: views.py:116
+msgid "state 保存数据到会话存储"
+msgstr ""
+
+#: views.py:119
+msgid "你可以将状态保存到会话存储(session storage)，刷新页面时可以恢复状态，关闭标签页或窗口后数据清除。"
+msgstr ""
+
+#: views.py:129
 msgid "绑定样式"
 msgstr ""
 
@@ -81,5 +97,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "你在修改的数据:"
+#~ msgstr ""
+
+#~ msgid "你可以将状态保存到会话存储(session storage)，下次打开页面时可以恢复状态。"
 #~ msgstr ""
 

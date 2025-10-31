@@ -100,6 +100,30 @@ def index():
                 td.input_number(index, min=0, max=1, label="idx:")
                 td.input(data[index], label="data[index]:")
 
+        @example(
+            N_("state 保存数据到本地存储"),
+            "state-local-storage",
+            description=N_(
+                "你可以将状态保存到本地存储(local storage)，下次打开页面时可以恢复状态。"
+            ),
+            imports=[m_tdesign_import],
+        )
+        def state_local_storage():
+            data = ui.local_storage(key="local_storage-my-data", value="")
+            td.input(data)
+
+        @example(
+            N_("state 保存数据到会话存储"),
+            "state-session-storage",
+            description=N_(
+                "你可以将状态保存到会话存储(session storage)，刷新页面时可以恢复状态，关闭标签页或窗口后数据清除。"
+            ),
+            imports=[m_tdesign_import],
+        )
+        def state_session_storage():
+            data = ui.session_storage(key="session_storage-my-data", value="")
+            td.input(data)
+
     with root_node("状态绑定", "state-binding"):
 
         @example(N_("绑定样式"), "style-binding", imports=[m_tdesign_import])

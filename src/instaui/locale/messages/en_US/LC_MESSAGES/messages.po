@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-28 21:11+0800\n"
+"POT-Creation-Date: 2025-11-01 02:12+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -53,17 +53,33 @@ msgstr "Computation does not require a server"
 msgid "通过索引访问状态"
 msgstr "Access State by Index"
 
-#: views.py:91
+#: views.py:88
 #, fuzzy
 msgid "动态索引访问状态"
 msgstr "Dynamic Access to State"
 
-#: views.py:93
+#: views.py:90
 #, fuzzy
 msgid "你可以通过动态索引访问状态，同时保持其响应性。"
 msgstr "You can access the state by dynamic index and keep it reactive."
 
-#: views.py:108
+#: views.py:104
+msgid "state 保存数据到本地存储"
+msgstr "state Save Data to Local Storage"
+
+#: views.py:107
+msgid "你可以将状态保存到本地存储(local storage)，下次打开页面时可以恢复状态。"
+msgstr "You can save the state to local storage (local storage), and the state can be restored when the page is opened again."
+
+#: views.py:116
+msgid "state 保存数据到会话存储"
+msgstr "state Save Data to Session Storage"
+
+#: views.py:119
+msgid "你可以将状态保存到会话存储(session storage)，刷新页面时可以恢复状态，关闭标签页或窗口后数据清除。"
+msgstr "You can save the state to session storage (session storage), and the state can be restored when the page is refreshed, and the data will be cleared when the tab or window is closed."
+
+#: views.py:129
 msgid "绑定样式"
 msgstr "Binding Style"
 
