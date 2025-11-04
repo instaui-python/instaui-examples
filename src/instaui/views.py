@@ -4,6 +4,8 @@ from instaui_tdesign import td
 from shared.example_extractor import use_example_infos
 
 m_tdesign_import = "from instaui_tdesign import td"
+m_pathlib_import = "from pathlib import Path"
+m_shutil_import = "import shutil"
 
 
 def index():
@@ -12,13 +14,13 @@ def index():
     N_ = I18nState.get()
     example, infos, root_node = use_example_infos()
 
-    with root_node("入门", "introduction"):
+    with root_node(N_("入门"), "introduction"):
 
         @example(N_("模板"), "template")
         def template():
             ui.text("hello world")
 
-    with root_node("状态管理", "state manager"):
+    with root_node(N_("状态管理"), "state manager"):
 
         @example(N_("可读写状态-state"), "read-write-state", imports=[m_tdesign_import])
         def read_write_state():
@@ -124,7 +126,7 @@ def index():
             data = ui.session_storage(key="session_storage-my-data", value="")
             td.input(data)
 
-    with root_node("状态绑定", "state-binding"):
+    with root_node(N_("状态绑定"), "state-binding"):
 
         @example(N_("绑定样式"), "style-binding", imports=[m_tdesign_import])
         def state_binding():
@@ -133,5 +135,136 @@ def index():
             # ui
             td.select(["red", "blue", "green"], value=color)
             ui.text("text color").style({"color": color})
+
+    with root_node(N_("文件下载和上传"), "file-download-upload"):
+
+        @example(
+            N_("文件下载"),
+            "file-download",
+            instaui_module_imports=["file_io"],
+            imports=[m_pathlib_import],
+        )
+        def file_download(
+            content=N_(
+                "此为静态文档，无法演示下载功能，请复制代码到本地运行查看效果。"
+            ),
+        ):
+            # mark
+            td.button("download").on_click(
+                td.message_plugin.warning(
+                    content=content,
+                    placement="bottom",
+                    duration=3000,
+                )
+            )
+
+            # to
+            # @ui.event(outputs=[file_io.download_file.output()])
+            # def download():
+            #     return file_io.download_file.prepare_download(Path("/path/to/file.txt"))
+
+            # td.button("download").on_click(download)
+            # end-to
+
+            # end-mark
+
+        @example(
+            N_("文件下载-客户端(js)事件"),
+            "file-download-client(js)-event",
+            instaui_module_imports=["file_io"],
+            imports=[m_pathlib_import],
+        )
+        def file_download_client_event(
+            content=N_(
+                "此为静态文档，无法演示下载功能，请复制代码到本地运行查看效果。"
+            ),
+        ):
+            # mark
+
+            td.button("download").on_click(
+                td.message_plugin.warning(
+                    content=content,
+                    placement="center",
+                    duration=3000,
+                )
+            )
+
+            # to
+            # download = ui.js_event(
+            #     inputs=[file_io.download_file.js_fn_input(Path("/path/to/file.txt"))],
+            #     outputs=[file_io.download_file.output()],
+            #     code="""fn=> fn()""",
+            # )
+
+            # html.button("download").on_click(download)
+            # end-to
+
+            # end-mark
+
+        @example(
+            N_("文件上传-小文件"),
+            "file-upload-small-file",
+            instaui_module_imports=["file_io"],
+            imports=[m_pathlib_import],
+        )
+        def file_upload_small_file(
+            content=N_(
+                "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+            ),
+        ):
+            # mark
+
+            on_click = ui.js_event(
+                inputs=[ui.event_context.e(), content],
+                code=r"""(e,msg)=> {$tdesign.MessagePlugin.warning({content:msg,placement:'center',duration:3000});e.preventDefault()}""",
+            )
+
+            td.upload().on("click", on_click)
+
+            # to
+            # @file_io.upload_file()
+            # async def upload_file(file: file_io.TUploadFile) -> file_io.TUploadFileResult:
+            #     save_path = Path(__file__).parent / file.filename
+            #     content = await file.read()
+            #     save_path.write_bytes(content)
+            #     return {"status": 200}
+
+            # td.upload(action=upload_file.url)
+            # end-to
+
+            # end-mark
+
+        @example(
+            N_("文件上传-大文件"),
+            "file-upload-big-file",
+            instaui_module_imports=["file_io"],
+            imports=[m_pathlib_import, m_shutil_import],
+        )
+        def file_upload_big_file(
+            content=N_(
+                "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+            ),
+        ):
+            # mark
+
+            on_click = ui.js_event(
+                inputs=[ui.event_context.e(), content],
+                code=r"""(e,msg)=> {$tdesign.MessagePlugin.warning({content:msg,placement:'center',duration:3000});e.preventDefault()}""",
+            )
+
+            td.upload().on("click", on_click)
+
+            # to
+            # @file_io.upload_file()
+            # async def upload_file(file: file_io.TUploadFile) -> file_io.TUploadFileResult:
+            #     save_path = Path(__file__).parent / file.filename
+            #     with save_path.open("wb") as f:
+            #         shutil.copyfileobj(file.file, f)
+            #     return {"status": 200}
+
+            # td.upload(action=upload_file.url)
+            # end-to
+
+            # end-mark
 
     return infos

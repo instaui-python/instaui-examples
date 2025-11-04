@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-01 02:12+0800\n"
+"POT-Creation-Date: 2025-11-04 19:05+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -23,65 +23,113 @@ msgid "instaui 示例"
 msgstr "instaui examples"
 
 #: views.py:17
+msgid "入门"
+msgstr "Introduction"
+
+#: views.py:19
 msgid "模板"
 msgstr "Templates"
 
 #: views.py:23
+msgid "状态管理"
+msgstr "State Management"
+
+#: views.py:25
 #, fuzzy
 msgid "可读写状态-state"
 msgstr "Read-Write Status"
 
-#: views.py:32
+#: views.py:34
 #, fuzzy
 msgid "只读状态-computed(服务端)"
 msgstr "Read-Only Status (Server-side)"
 
-#: views.py:35
+#: views.py:37
 msgid "函数在服务端执行"
 msgstr "Function is executed on the server"
 
-#: views.py:58
+#: views.py:60
 #, fuzzy
 msgid "只读状态-js_computed(客户端)"
 msgstr "Read-Only Status (Server-side)"
 
-#: views.py:61
+#: views.py:63
 msgid "计算无须经过服务端"
 msgstr "Computation does not require a server"
 
-#: views.py:73
+#: views.py:75
 msgid "通过索引访问状态"
 msgstr "Access State by Index"
 
-#: views.py:88
+#: views.py:90
 #, fuzzy
 msgid "动态索引访问状态"
 msgstr "Dynamic Access to State"
 
-#: views.py:90
+#: views.py:92
 #, fuzzy
 msgid "你可以通过动态索引访问状态，同时保持其响应性。"
 msgstr "You can access the state by dynamic index and keep it reactive."
 
-#: views.py:104
+#: views.py:106
 msgid "state 保存数据到本地存储"
 msgstr "state Save Data to Local Storage"
 
-#: views.py:107
+#: views.py:109
 msgid "你可以将状态保存到本地存储(local storage)，下次打开页面时可以恢复状态。"
-msgstr "You can save the state to local storage (local storage), and the state can be restored when the page is opened again."
+msgstr ""
+"You can save the state to local storage (local storage), and the state "
+"can be restored when the page is opened again."
 
-#: views.py:116
+#: views.py:118
 msgid "state 保存数据到会话存储"
 msgstr "state Save Data to Session Storage"
 
-#: views.py:119
+#: views.py:121
 msgid "你可以将状态保存到会话存储(session storage)，刷新页面时可以恢复状态，关闭标签页或窗口后数据清除。"
-msgstr "You can save the state to session storage (session storage), and the state can be restored when the page is refreshed, and the data will be cleared when the tab or window is closed."
+msgstr ""
+"You can save the state to session storage (session storage), and the "
+"state can be restored when the page is refreshed, and the data will be "
+"cleared when the tab or window is closed."
 
 #: views.py:129
+msgid "状态绑定"
+msgstr "State Binding"
+
+#: views.py:131
 msgid "绑定样式"
 msgstr "Binding Style"
+
+#: views.py:139
+#, fuzzy
+msgid "文件下载和上传"
+msgstr "File Download"
+
+#: views.py:142
+msgid "文件下载"
+msgstr "File Download"
+
+#: views.py:149 views.py:179
+msgid "此为静态文档，无法演示下载功能，请复制代码到本地运行查看效果。"
+msgstr "This is a static document and cannot demonstrate the download "
+
+#: views.py:172
+msgid "文件下载-客户端(js)事件"
+msgstr "File Download (Client-side Event)"
+
+#: views.py:205
+msgid "文件上传-小文件"
+msgstr "File Upload (Small File)"
+
+#: views.py:212 views.py:245
+#, fuzzy
+msgid "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+msgstr "This is a static document and cannot demonstrate the upload "
+
+#: views.py:238
+#, fuzzy
+msgid "文件上传-大文件"
+msgstr "File Upload (Big File)"
 
 #~ msgid "快速开始"
 #~ msgstr "Quick Start"

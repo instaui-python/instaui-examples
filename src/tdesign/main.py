@@ -43,7 +43,7 @@ def home():
             with ui.container(size="4"), ui.column(gap="4"):
                 dependencies_zone(
                     [
-                        "instaui[web]",
+                        f"instaui[web]>={ui.__version__}",
                         f"instaui_tdesign>={td.__version__}",
                     ]
                 )

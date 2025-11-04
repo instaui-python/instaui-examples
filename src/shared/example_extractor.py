@@ -20,21 +20,37 @@ class ExampleInfo:
     imports: Optional[list[str]] = field(default_factory=list)
     ignore_indent_condition: Optional[Callable[[str], bool]] = None
     translation_mapping: Optional[dict[str, str]] = None
+    instaui_module_imports: Optional[list[str]] = None
 
 
 def get_function_body(
     func, indent=4, ignore_indent_condition: Optional[Callable[[str], bool]] = None
 ):
     source = inspect.getsource(func)
-    lines = source.splitlines()
-    if len(lines) <= 1:
+    if not source.strip():
         return ""
 
-    body_start = next(
-        (i for i, line in enumerate(lines) if line.lstrip().startswith("def ")), 0
-    )
+    # Robust regex to match function definition including:
+    # - def keyword
+    # - function name
+    # - parameter list (handling nested parentheses)
+    # - ending colon
+    pattern = r"^\s*def\s+\w+\s*\([^()]*(?:\([^()]*\)[^()]*)*\)\s*:"
+    match = re.search(pattern, source, re.MULTILINE | re.DOTALL)
+    if not match:
+        return ""
 
-    body = "\n".join(lines[body_start + 1 :])
+    # Get the position after the function definition
+    body_start = match.end()
+    body = source[body_start:]
+
+    # Remove leading empty lines
+    lines = body.splitlines()
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    body = "\n".join(lines)
+
+    # Remove common leading indentation
     body = textwrap.dedent(body)
 
     indent_str = " " * indent
@@ -103,6 +119,7 @@ def use_example_infos(
         description: str = "",
         imports: Optional[list[str]] = None,
         ignore_indent_condition: Optional[Callable[[str], bool]] = None,
+        instaui_module_imports: Optional[list[str]] = None,
         *,
         translation_mapping: Optional[dict[str, str]] = None,
     ):
@@ -115,6 +132,7 @@ def use_example_infos(
                 imports=[*(imports or []), *(require_imports or [])],
                 ignore_indent_condition=ignore_indent_condition,
                 translation_mapping=translation_mapping,
+                instaui_module_imports=instaui_module_imports,
             )
 
             if current_node:
@@ -144,7 +162,10 @@ def example_view(info: ExampleInfo):
         return
 
     imports = info.imports or []
-    imports = ["from instaui import ui", *imports]
+    instaui_import = (
+        f"from instaui import {', '.join(['ui', *(info.instaui_module_imports or [])])}"
+    )
+    imports = [instaui_import, *imports]
     imports_code = "\n".join(imports)
 
     prepage_code = _gen_prepage_code(imports)
@@ -165,9 +186,9 @@ def example_view(info: ExampleInfo):
             else {},
         ],
         code=r"""(imports_code, prepage_code, code, t_data)=>{
-    const realCode = code.replace(/# N_\((\w+)\)/g, (match, key) => {
+    const realCode = code.replace(/N_\((\w+)\)/g, (match, key) => {
         // 如果映射里有对应的 key，就替换，否则保留原文
-        return t_data[key] ? `# ${t_data[key]}` : match;
+        return t_data[key] ? `${t_data[key]}` : match;
     });
 
     return `
@@ -189,22 +210,44 @@ ui.server(debug=True).run()
         ).props({"id": f"{info.title_id.lower().replace(' ', '-')}"}),
         ui.grid(columns=2),
     ):
-        with td.card(body_style={"height": "100%"}):
+        with td.card(body_style={"height": "400px"}):
             info.fn()
         shiki(code, line_numbers=True, transformers=["notationHighlight"])
 
 
 def example_list_view(infos: list[ExampleInfo]):
-    for info in infos:
-        if info.children:
-            td.tag(info.title, variant="outline", size="large", theme="primary").props(
-                {"id": info.title_id.replace(" ", "-")}
-            ).style("width:fit-content;margin-top:1rem")
+    goto_nav_node = ui.js_event(
+        code=r"""()=>{
+  const hash = window.location.hash;
+  debugger
+  if (hash) {
+    const el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }                                                           
+}"""
+    )
 
-            for child in info.children:
-                example_view(child)
-        else:
-            example_view(info)
+    with (
+        ui.column(gap="4")
+        .scoped_style("content-visibility: auto;", selector="> *")
+        .scoped_style("contain-intrinsic-size:auto 22px", selector="> *.t-tag")
+        .scoped_style("contain-intrinsic-size:auto 400px", selector="> *.t-card")
+        .on_mounted(goto_nav_node)
+    ):
+        for info in infos:
+            if info.children:
+                td.tag(
+                    info.title, variant="outline", size="large", theme="primary"
+                ).props({"id": info.title_id.replace(" ", "-")}).style(
+                    "width:fit-content;margin-top:1rem"
+                )
+
+                for child in info.children:
+                    example_view(child)
+            else:
+                example_view(info)
 
 
 def _gen_prepage_code(imports: list[str]):

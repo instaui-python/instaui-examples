@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-01 02:12+0800\n"
+"POT-Creation-Date: 2025-11-04 19:05+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -23,59 +23,99 @@ msgid "instaui 示例"
 msgstr ""
 
 #: views.py:17
+msgid "入门"
+msgstr ""
+
+#: views.py:19
 msgid "模板"
 msgstr ""
 
 #: views.py:23
+msgid "状态管理"
+msgstr ""
+
+#: views.py:25
 msgid "可读写状态-state"
 msgstr ""
 
-#: views.py:32
+#: views.py:34
 msgid "只读状态-computed(服务端)"
 msgstr ""
 
-#: views.py:35
+#: views.py:37
 msgid "函数在服务端执行"
 msgstr ""
 
-#: views.py:58
+#: views.py:60
 msgid "只读状态-js_computed(客户端)"
 msgstr ""
 
-#: views.py:61
+#: views.py:63
 msgid "计算无须经过服务端"
 msgstr ""
 
-#: views.py:73
+#: views.py:75
 msgid "通过索引访问状态"
 msgstr ""
 
-#: views.py:88
+#: views.py:90
 msgid "动态索引访问状态"
 msgstr ""
 
-#: views.py:90
+#: views.py:92
 msgid "你可以通过动态索引访问状态，同时保持其响应性。"
 msgstr ""
 
-#: views.py:104
+#: views.py:106
 msgid "state 保存数据到本地存储"
 msgstr ""
 
-#: views.py:107
+#: views.py:109
 msgid "你可以将状态保存到本地存储(local storage)，下次打开页面时可以恢复状态。"
 msgstr ""
 
-#: views.py:116
+#: views.py:118
 msgid "state 保存数据到会话存储"
 msgstr ""
 
-#: views.py:119
+#: views.py:121
 msgid "你可以将状态保存到会话存储(session storage)，刷新页面时可以恢复状态，关闭标签页或窗口后数据清除。"
 msgstr ""
 
 #: views.py:129
+msgid "状态绑定"
+msgstr ""
+
+#: views.py:131
 msgid "绑定样式"
+msgstr ""
+
+#: views.py:139
+msgid "文件下载和上传"
+msgstr ""
+
+#: views.py:142
+msgid "文件下载"
+msgstr ""
+
+#: views.py:149 views.py:179
+msgid "此为静态文档，无法演示下载功能，请复制代码到本地运行查看效果。"
+msgstr ""
+
+#: views.py:172
+msgid "文件下载-客户端(js)事件"
+msgstr ""
+
+#: views.py:205
+msgid "文件上传-小文件"
+msgstr ""
+
+#: views.py:212 views.py:245
+msgid "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+msgstr ""
+
+#: views.py:238
+msgid "文件上传-大文件"
 msgstr ""
 
 #~ msgid "快速开始"
