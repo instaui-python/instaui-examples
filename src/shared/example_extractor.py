@@ -219,7 +219,6 @@ def example_list_view(infos: list[ExampleInfo]):
     goto_nav_node = ui.js_event(
         code=r"""()=>{
   const hash = window.location.hash;
-  debugger
   if (hash) {
     const el = document.querySelector(hash);
     if (el) {
