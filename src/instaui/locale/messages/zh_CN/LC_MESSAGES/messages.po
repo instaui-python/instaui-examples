@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-04 19:05+0800\n"
+"POT-Creation-Date: 2025-11-05 21:22+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -110,12 +110,28 @@ msgstr ""
 msgid "文件上传-小文件"
 msgstr ""
 
-#: views.py:212 views.py:245
+#: views.py:212 views.py:245 views.py:281 views.py:316
 msgid "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
 msgstr ""
 
 #: views.py:238
 msgid "文件上传-大文件"
+msgstr ""
+
+#: views.py:271
+msgid "文件上传-多文件"
+msgstr ""
+
+#: views.py:276
+msgid "每个文件单独上传，file 总是 list，list 长度为 1"
+msgstr ""
+
+#: views.py:308
+msgid "文件上传-多文件(合并上传)"
+msgstr ""
+
+#: views.py:312
+msgid "所有文件合并到一个请求中"
 msgstr ""
 
 #~ msgid "快速开始"

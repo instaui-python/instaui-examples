@@ -267,4 +267,79 @@ def index():
 
             # end-mark
 
+        @example(
+            N_("文件上传-多文件"),
+            "file-upload-multi-file",
+            instaui_module_imports=["file_io"],
+            imports=[m_pathlib_import],
+            translation_mapping={
+                "d1": N_("每个文件单独上传，file 总是 list，list 长度为 1")
+            },
+        )
+        def file_upload_multi_file(
+            content=N_(
+                "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+            ),
+        ):
+            # mark
+
+            on_click = ui.js_event(
+                inputs=[ui.event_context.e(), content],
+                code=r"""(e,msg)=> {$tdesign.MessagePlugin.warning({content:msg,placement:'center',duration:3000});e.preventDefault()}""",
+            )
+
+            td.upload().on("click", on_click)
+
+            # to
+            # @file_io.upload_file()
+            # async def upload_file(file: list[file_io.TUploadFile]) -> file_io.TUploadFileResult:
+            #     # N_(d1)
+            #     assert isinstance(file, list)
+            #     assert len(file) == 1
+            #     for f in file:
+            #         print(f)
+
+            # td.upload(action=upload_file.url, multiple=True)
+            # end-to
+
+            # end-mark
+
+        @example(
+            N_("文件上传-多文件(合并上传)"),
+            "file-upload-multi-file-merge",
+            instaui_module_imports=["file_io"],
+            imports=[m_pathlib_import],
+            translation_mapping={"d1": N_("所有文件合并到一个请求中")},
+        )
+        def file_upload_multi_file_merge(
+            content=N_(
+                "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+            ),
+        ):
+            # mark
+
+            on_click = ui.js_event(
+                inputs=[ui.event_context.e(), content],
+                code=r"""(e,msg)=> {$tdesign.MessagePlugin.warning({content:msg,placement:'center',duration:3000});e.preventDefault()}""",
+            )
+
+            td.upload().on("click", on_click)
+
+            # to
+            # @file_io.upload_file()
+            # async def upload_file(file: list[file_io.TUploadFile]) -> file_io.TUploadFileResult:
+            #     # N_(d1)
+            #     assert isinstance(file, list)
+            #     for f in file:
+            #         print(f)
+
+            # td.upload(
+            #     action=upload_file.url,
+            #     multiple=True,
+            #     upload_all_files_in_one_request=True,
+            # )
+            # end-to
+
+            # end-mark
+
     return infos

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-04 19:05+0800\n"
+"POT-Creation-Date: 2025-11-05 21:22+0800\n"
 "PO-Revision-Date: 2025-10-25 21:39+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -35,12 +35,10 @@ msgid "状态管理"
 msgstr "State Management"
 
 #: views.py:25
-#, fuzzy
 msgid "可读写状态-state"
 msgstr "Read-Write Status"
 
 #: views.py:34
-#, fuzzy
 msgid "只读状态-computed(服务端)"
 msgstr "Read-Only Status (Server-side)"
 
@@ -49,9 +47,8 @@ msgid "函数在服务端执行"
 msgstr "Function is executed on the server"
 
 #: views.py:60
-#, fuzzy
 msgid "只读状态-js_computed(客户端)"
-msgstr "Read-Only Status (Server-side)"
+msgstr "Read-Only Status (Client-side)"
 
 #: views.py:63
 msgid "计算无须经过服务端"
@@ -62,12 +59,10 @@ msgid "通过索引访问状态"
 msgstr "Access State by Index"
 
 #: views.py:90
-#, fuzzy
 msgid "动态索引访问状态"
 msgstr "Dynamic Access to State"
 
 #: views.py:92
-#, fuzzy
 msgid "你可以通过动态索引访问状态，同时保持其响应性。"
 msgstr "You can access the state by dynamic index and keep it reactive."
 
@@ -101,9 +96,8 @@ msgid "绑定样式"
 msgstr "Binding Style"
 
 #: views.py:139
-#, fuzzy
 msgid "文件下载和上传"
-msgstr "File Download"
+msgstr "File Download and Upload"
 
 #: views.py:142
 msgid "文件下载"
@@ -121,15 +115,29 @@ msgstr "File Download (Client-side Event)"
 msgid "文件上传-小文件"
 msgstr "File Upload (Small File)"
 
-#: views.py:212 views.py:245
-#, fuzzy
+#: views.py:212 views.py:245 views.py:281 views.py:316
 msgid "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
 msgstr "This is a static document and cannot demonstrate the upload "
 
 #: views.py:238
-#, fuzzy
 msgid "文件上传-大文件"
 msgstr "File Upload (Big File)"
+
+#: views.py:271
+msgid "文件上传-多文件"
+msgstr "File Upload (Multi File)"
+
+#: views.py:276
+msgid "每个文件单独上传，file 总是 list，list 长度为 1"
+msgstr "Each file is uploaded separately, and the file is always a list, "
+
+#: views.py:308
+msgid "文件上传-多文件(合并上传)"
+msgstr "File Upload (Multi File Merge)"
+
+#: views.py:312
+msgid "所有文件合并到一个请求中"
+msgstr "All files are merged into a single request"
 
 #~ msgid "快速开始"
 #~ msgstr "Quick Start"
