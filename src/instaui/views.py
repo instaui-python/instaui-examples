@@ -142,7 +142,7 @@ def index():
             N_("文件下载"),
             "file-download",
             instaui_module_imports=["file_io"],
-            imports=[m_pathlib_import],
+            imports=[m_tdesign_import, m_pathlib_import],
         )
         def file_download(
             content=N_(
@@ -172,7 +172,7 @@ def index():
             N_("文件下载-客户端(js)事件"),
             "file-download-client(js)-event",
             instaui_module_imports=["file_io"],
-            imports=[m_pathlib_import],
+            imports=[m_tdesign_import, m_pathlib_import],
         )
         def file_download_client_event(
             content=N_(
@@ -196,7 +196,7 @@ def index():
             #     code="""fn=> fn()""",
             # )
 
-            # html.button("download").on_click(download)
+            # td.button("download").on_click(download)
             # end-to
 
             # end-mark
@@ -205,7 +205,7 @@ def index():
             N_("文件上传-小文件"),
             "file-upload-small-file",
             instaui_module_imports=["file_io"],
-            imports=[m_pathlib_import],
+            imports=[m_tdesign_import, m_pathlib_import],
         )
         def file_upload_small_file(
             content=N_(
@@ -238,7 +238,7 @@ def index():
             N_("文件上传-大文件"),
             "file-upload-big-file",
             instaui_module_imports=["file_io"],
-            imports=[m_pathlib_import, m_shutil_import],
+            imports=[m_tdesign_import, m_pathlib_import, m_shutil_import],
         )
         def file_upload_big_file(
             content=N_(
@@ -271,7 +271,7 @@ def index():
             N_("文件上传-多文件"),
             "file-upload-multi-file",
             instaui_module_imports=["file_io"],
-            imports=[m_pathlib_import],
+            imports=[m_tdesign_import, m_pathlib_import],
             translation_mapping={
                 "d1": N_("每个文件单独上传，file 总是 list，list 长度为 1")
             },
@@ -308,7 +308,7 @@ def index():
             N_("文件上传-多文件(合并上传)"),
             "file-upload-multi-file-merge",
             instaui_module_imports=["file_io"],
-            imports=[m_pathlib_import],
+            imports=[m_tdesign_import, m_pathlib_import],
             translation_mapping={"d1": N_("所有文件合并到一个请求中")},
         )
         def file_upload_multi_file_merge(
