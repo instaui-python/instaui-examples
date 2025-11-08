@@ -32,7 +32,7 @@ cd instaui-examples
 
 生成离线本地网页
 ```shell
-uv run src/main.py --offline
+uv run src/static_website.py --offline
 ```
 
 生成的网页文件位于 `website` 文件夹中。

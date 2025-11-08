@@ -38,16 +38,16 @@ def language_dict_sets(lang_codes: list[str], *, locale_dir: Path, domain="messa
 
 """
 # 提取翻译模板
-pybabel extract -F ./locale/babel.cfg -o ./locale/messages.pot .
+pybabel extract -F src/locale/babel.cfg -o src/locale/messages.pot .
 
 # 更新. 在 locales.pot 文件中添加翻译
-pybabel update -i ./locale/messages.pot -d ./locale/messages
+pybabel update -i src/locale/messages.pot -d src/locale/messages
 
 # 生成目录
-pybabel init -i ./locale/messages.pot -d ./locale/messages -l zh_CN
-pybabel init -i ./locale/messages.pot -d ./locale/messages -l en_US
+pybabel init -i src/locale/messages.pot -d src/locale/messages -l zh_CN
+pybabel init -i src/locale/messages.pot -d src/locale/messages -l en_US
 
 
 # 更新翻译
-pybabel compile -d ./locale/messages
+pybabel compile -d src/locale/messages
 """

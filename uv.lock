@@ -351,7 +351,7 @@ wheels = [
 
 [[package]]
 name = "instaui"
-version = "0.7.17"
+version = "0.7.18"
 source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
 dependencies = [
     { name = "jinja2" },
@@ -359,9 +359,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/19/58/b5ce98613614c2d43b73d60aa2064e6e59877a5e03b27bc2d898cf176114/instaui-0.7.17.tar.gz", hash = "sha256:66f8bb5407e46fb0965d524f20c8c25c25e826a880c7fee2e4d9aaca24447639", size = 401772, upload-time = "2025-11-07T00:51:25.547Z" }
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/e9/d0/80ba7fa1fecb4a0b0a57b5b845d795e023ae4cba927ba222138afb703a76/instaui-0.7.18.tar.gz", hash = "sha256:4d0a9c469ebf75d9e9deaab21cea4f13d8b076ce4a4dc9be8744aa01c1bbbfcb", size = 402239, upload-time = "2025-11-08T20:07:04.847Z" }
 wheels = [
-    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/ab/2d/6d34c9694f86fe6e501db0e257226f9db9057a46d13b872e26505d8d3d16/instaui-0.7.17-py3-none-any.whl", hash = "sha256:f8bf485a16165dc04547add40514c62d6dd05093230dc9c385293ab06ae05b81", size = 485574, upload-time = "2025-11-07T00:51:23.568Z" },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/47/71/3cf68acde826bedb2b9f10b2c2542cec9b52d3287c433b6f50d74fcb8bb8/instaui-0.7.18-py3-none-any.whl", hash = "sha256:1b06d347c635f0ac5d93abb152de6015ad57aa8e1f5ba5a5397f4a58438410e2", size = 486317, upload-time = "2025-11-08T20:07:00.593Z" },
 ]
 
 [package.optional-dependencies]
@@ -411,7 +411,7 @@ lint = [
 
 [package.metadata]
 requires-dist = [
-    { name = "instaui", extras = ["web"], specifier = ">=0.7.17" },
+    { name = "instaui", extras = ["web"], specifier = ">=0.7.18" },
     { name = "instaui-echarts", specifier = ">=0.4.2" },
     { name = "instaui-shiki", specifier = ">=0.5.5" },
     { name = "instaui-tdesign", extras = ["all"], specifier = ">=0.5.5" },

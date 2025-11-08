@@ -1,33 +1,57 @@
 from pathlib import Path
-import subprocess
-from shared.cmd import parse_offline_flag
+from typing import Callable
+from instaui import ui
+from instaui_tdesign import td, locales
+from shared.css import apply_css
+from shared.cmd import parse_no_server_flag
+from shared.lang_select import I18nPageState
 
-SRC_ROOT = Path(__file__).parent
+# from shared.website_utils import zero_dist_to_website
+from pages.index_page.main import page as index_page
+from pages.instaui_page.main import page as instaui_page
+from pages.echarts_page.main import page as echarts_page
+from pages.shiki_page.main import page as shiki_page
+from pages.tdesign_page.main import page as tdesign_page
+from pages.gallery_page.etch_sketch.main import page as etch_sketch_page
+
+td.use(theme="violet", locale="en_US")
+apply_css()
+
+
+class I18nState(I18nPageState, locale_dir=Path(__file__).parent / "locale"):
+    pass
+
+
+def wrapped_page(page_fn: Callable):
+    def page():
+        locale_dict, _ = locales.use_locale_dict(type="client")
+
+        with td.config_provider(global_config=locale_dict):
+            page_fn()
+
+    return page
+
+
+ui.page("/")(wrapped_page(index_page))
+ui.page("/instaui")(wrapped_page(instaui_page))
+ui.page("/instaui-echarts")(wrapped_page(echarts_page))
+ui.page("/instaui-shiki")(wrapped_page(shiki_page))
+ui.page("/instaui-tdesign")(wrapped_page(tdesign_page))
+ui.page("/gallery/etch-sketch")(wrapped_page(etch_sketch_page))
+
+
+if not parse_no_server_flag():
+    ui.server(debug=True).run()
+
+
+def build_state_html():
+    pass
+    # zero_dist_to_website(
+    #     home,
+    #     base_folder=Path(__file__).parent,
+    #     file="index.html",
+    # )
+
 
 if __name__ == "__main__":
-    offline = parse_offline_flag()
-    print(f"Offline mode: {offline}")
-
-    startup_moudles = [
-        "index",
-        "instaui",
-        "tdesign",
-        "echarts",
-        "shiki",
-        "gallery/etch_sketch",
-    ]
-
-    for module_name in startup_moudles:
-        module_root = SRC_ROOT / module_name
-        module_main = module_root / "main.py"
-
-        print(f"▶️ Running {module_main} ...")
-
-        # uv run main.py
-        subprocess.run(
-            ["uv", "run", "main.py", "--no-server", "--offline" if offline else ""],
-            cwd=module_root,
-            check=True,
-        )
-
-    print("✅ All html pages generated successfully. see website folder.")
+    build_state_html()

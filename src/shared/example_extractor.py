@@ -1,13 +1,12 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
-import textwrap
-import re
 from typing import Callable, Optional
-import inspect
+from dataclasses import dataclass, field
 from contextlib import contextmanager
+import textwrap
 from instaui import ui
 from instaui_shiki import shiki
 from instaui_tdesign import td
+from systems import code_system
 
 
 @dataclass
@@ -18,93 +17,8 @@ class ExampleInfo:
     fn: Optional[Callable] = None
     children: list[ExampleInfo] = field(default_factory=list)
     imports: Optional[list[str]] = field(default_factory=list)
-    ignore_indent_condition: Optional[Callable[[str], bool]] = None
     translation_mapping: Optional[dict[str, str]] = None
     instaui_module_imports: Optional[list[str]] = None
-
-
-def get_function_body(
-    func, indent=4, ignore_indent_condition: Optional[Callable[[str], bool]] = None
-):
-    source = inspect.getsource(func)
-    if not source.strip():
-        return ""
-
-    # Robust regex to match function definition including:
-    # - def keyword
-    # - function name
-    # - parameter list (handling nested parentheses)
-    # - ending colon
-    pattern = r"^\s*def\s+\w+\s*\([^()]*(?:\([^()]*\)[^()]*)*\)\s*:"
-    match = re.search(pattern, source, re.MULTILINE | re.DOTALL)
-    if not match:
-        return ""
-
-    # Get the position after the function definition
-    body_start = match.end()
-    body = source[body_start:]
-
-    # Remove leading empty lines
-    lines = body.splitlines()
-    while lines and not lines[0].strip():
-        lines.pop(0)
-    body = "\n".join(lines)
-
-    # Remove common leading indentation
-    body = textwrap.dedent(body)
-
-    indent_str = " " * indent
-
-    indent_predicate = (
-        None
-        if ignore_indent_condition is None
-        else lambda line: not ignore_indent_condition(line)
-    )
-    body = textwrap.indent(body, indent_str, predicate=indent_predicate)
-    return body
-
-
-def transform_mark_blocks(code: str) -> str:
-    lines = code.splitlines(True)  # keep line endings
-    result = []
-    i = 0
-    n = len(lines)
-
-    while i < n:
-        line = lines[i]
-
-        if re.match(r"^\s*# mark\b", line):
-            # Enter mark block
-            i += 1
-            mark_block = []
-
-            # Collect mark block lines
-            while i < n and not re.match(r"^\s*# end-mark\b", lines[i]):
-                mark_block.append(lines[i])
-                i += 1
-            i += 1  # Skip # end-mark
-
-            # Extract and convert "to" block
-            inside_to = False
-            converted = []
-            for ml in mark_block:
-                if re.match(r"^\s*# to\b", ml):
-                    inside_to = True
-                    continue
-                if re.match(r"^\s*# end-to\b", ml):
-                    inside_to = False
-                    continue
-                if inside_to:
-                    # Only remove a single leading '# ' keeping indentation
-                    converted.append(re.sub(r"^(\s*)# ?", r"\1", ml))
-
-            result.extend(converted)
-
-        else:
-            result.append(line)
-            i += 1
-
-    return "".join(result)
 
 
 def use_example_infos(
@@ -118,7 +32,6 @@ def use_example_infos(
         title_id: str,
         description: str = "",
         imports: Optional[list[str]] = None,
-        ignore_indent_condition: Optional[Callable[[str], bool]] = None,
         instaui_module_imports: Optional[list[str]] = None,
         *,
         translation_mapping: Optional[dict[str, str]] = None,
@@ -130,7 +43,6 @@ def use_example_infos(
                 description,
                 fn,
                 imports=[*(imports or []), *(require_imports or [])],
-                ignore_indent_condition=ignore_indent_condition,
                 translation_mapping=translation_mapping,
                 instaui_module_imports=instaui_module_imports,
             )
@@ -170,11 +82,9 @@ def example_view(info: ExampleInfo):
 
     prepage_code = _gen_prepage_code(imports)
 
-    fn_code = get_function_body(
-        info.fn, ignore_indent_condition=info.ignore_indent_condition
-    )
-
-    fn_code = transform_mark_blocks(fn_code)
+    fn_code = code_system.get_function_body(info.fn)
+    fn_code = code_system.transform_mark_blocks(fn_code)
+    fn_code = code_system.adjust_indent_excluding_noindent(fn_code, " " * 4)
 
     code = ui.js_computed(
         inputs=[
@@ -205,9 +115,10 @@ ui.server(debug=True).run()
     )
 
     with (
-        ui.lazy_render(height="500px")
-        .style("height:500px")
-        .props({"id": f"{info.title_id.lower().replace(' ', '-')}"}),
+        ui.box(as_child=True, height={"xs": "80dvh", "md": "500px"}),
+        ui.lazy_render(height="500px").props(
+            {"id": f"{info.title_id.lower().replace(' ', '-')}"}
+        ),
         ui.column(height="100%", gap="0", as_child=True),
         td.card(
             title=info.title,
@@ -215,14 +126,19 @@ ui.server(debug=True).run()
             subtitle=info.description,
             body_style={"flex": "1", "overflow-y": "hidden"},
         ),
-        ui.grid(columns=2, height="100%", overflow_y="hidden"),
+        ui.grid(
+            columns={"xs": 1, "md": 2},
+            rows={"xs": "2fr 1fr", "md": 1},
+            height="100%",
+            overflow_y="hidden",
+        ),
     ):
         with (
             ui.box(overflow_y="auto", as_child=True),
             td.card(body_style={"height": "100%"}),
         ):
             info.fn()
-        shiki(code, line_numbers=True, transformers=["notationHighlight"])
+        shiki(code, line_numbers=True)
 
 
 def example_list_view(infos: list[ExampleInfo]):

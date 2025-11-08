@@ -1,0 +1,270 @@
+# English (United States) translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-09 03:02+0800\n"
+"PO-Revision-Date: 2025-11-08 20:42+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en_US\n"
+"Language-Team: en_US <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: src/pages/echarts_page/graphics_examples.py:18
+msgid "折线图"
+msgstr "Line Chart"
+
+#: src/pages/echarts_page/graphics_examples.py:37
+msgid "折线图（按颜色分组）"
+msgstr "Line Chart (Grouped by Color)"
+
+#: src/pages/echarts_page/graphics_examples.py:54
+msgid "折线图（按分面分组）"
+msgstr "Line Chart (Grouped by Facet)"
+
+#: src/pages/echarts_page/graphics_examples.py:70
+msgid "柱状图"
+msgstr "Bar Chart"
+
+#: src/pages/echarts_page/graphics_examples.py:90
+msgid "联动"
+msgstr "Linkage"
+
+#: src/pages/echarts_page/graphics_examples.py:116
+msgid "使用 polars 作为数据源"
+msgstr "Use polars as data source"
+
+#: src/pages/echarts_page/graphics_examples.py:137
+msgid "坐标轴排序-利用数据间接实现"
+msgstr "Axis Sorting - Indirect Implementation"
+
+#: src/pages/echarts_page/graphics_examples.py:158
+msgid "坐标轴排序-axis api"
+msgstr "Axis Sorting - axis api"
+
+#: src/pages/echarts_page/main.py:14
+msgid "instaui-echarts 示例"
+msgstr "instaui Examples"
+
+#: src/pages/index_page/main.py:19
+msgid "示例"
+msgstr "Example"
+
+#: src/pages/index_page/main.py:22
+msgid "基础库"
+msgstr "Basic Library"
+
+#: src/pages/index_page/main.py:26
+msgid "Echarts 图表"
+msgstr "Echarts Charts"
+
+#: src/pages/index_page/main.py:29
+msgid "代码高亮"
+msgstr "Code Highlight"
+
+#: src/pages/index_page/main.py:33
+msgid "TDesign 组件"
+msgstr "TDesign Components"
+
+#: src/pages/index_page/main.py:40
+msgid "更多示例"
+msgstr "More Examples"
+
+#: src/pages/instaui_page/main.py:15
+msgid "instaui 示例"
+msgstr "instaui Examples"
+
+#: src/pages/instaui_page/views.py:15
+msgid "入门"
+msgstr "Getting Started"
+
+#: src/pages/instaui_page/views.py:17
+msgid "模板"
+msgstr "Templates"
+
+#: src/pages/instaui_page/views.py:21
+msgid "状态管理"
+msgstr "State Management"
+
+#: src/pages/instaui_page/views.py:23
+msgid "可读写状态-state"
+msgstr "Read-Write State - state"
+
+#: src/pages/instaui_page/views.py:32
+msgid "只读状态-computed(服务端)"
+msgstr "Read-Only State - computed (server)"
+
+#: src/pages/instaui_page/views.py:35
+msgid "函数在服务端执行"
+msgstr "Function executed on the server"
+
+#: src/pages/instaui_page/views.py:58
+msgid "只读状态-js_computed(客户端)"
+msgstr "Read-Only State - js_computed (client)"
+
+#: src/pages/instaui_page/views.py:61
+msgid "计算无须经过服务端"
+msgstr "Computation does not require a server"
+
+#: src/pages/instaui_page/views.py:73
+msgid "通过索引访问状态"
+msgstr "Access state by index"
+
+#: src/pages/instaui_page/views.py:88
+msgid "动态索引访问状态"
+msgstr "Dynamically access state by index"
+
+#: src/pages/instaui_page/views.py:90
+msgid "你可以通过动态索引访问状态，同时保持其响应性。"
+msgstr ""
+"You can dynamically access state by index, and maintain its "
+"responsiveness."
+
+#: src/pages/instaui_page/views.py:104
+msgid "state 保存数据到本地存储"
+msgstr "state saves data to local storage"
+
+#: src/pages/instaui_page/views.py:107
+msgid "你可以将状态保存到本地存储(local storage)，下次打开页面时可以恢复状态。"
+msgstr ""
+"You can save state to local storage (local storage), and restore state "
+"when opening the page again."
+
+#: src/pages/instaui_page/views.py:116
+msgid "state 保存数据到会话存储"
+msgstr "state saves data to session storage"
+
+#: src/pages/instaui_page/views.py:119
+msgid "你可以将状态保存到会话存储(session storage)，刷新页面时可以恢复状态，关闭标签页或窗口后数据清除。"
+msgstr ""
+"You can save state to session storage (session storage), and restore "
+"state when refreshing the page, and clear data when closing the tab or "
+"window."
+
+#: src/pages/instaui_page/views.py:127
+msgid "状态绑定"
+msgstr "State Binding"
+
+#: src/pages/instaui_page/views.py:129
+msgid "绑定样式"
+msgstr "Binding Styles"
+
+#: src/pages/instaui_page/views.py:137
+msgid "文件下载和上传"
+msgstr "File Download and Upload"
+
+#: src/pages/instaui_page/views.py:140
+msgid "文件下载"
+msgstr "File Download"
+
+#: src/pages/instaui_page/views.py:147 src/pages/instaui_page/views.py:177
+msgid "此为静态文档，无法演示下载功能，请复制代码到本地运行查看效果。"
+msgstr ""
+"This is a static document, and cannot demonstrate the download function. "
+"Please copy the code to your local machine to see the effect."
+
+#: src/pages/instaui_page/views.py:170
+msgid "文件下载-客户端(js)事件"
+msgstr "File Download - Client (js) Events"
+
+#: src/pages/instaui_page/views.py:203
+msgid "文件上传-小文件"
+msgstr "File Upload - Small File"
+
+#: src/pages/instaui_page/views.py:210 src/pages/instaui_page/views.py:243
+#: src/pages/instaui_page/views.py:279 src/pages/instaui_page/views.py:314
+msgid "此为静态文档，无法演示上传功能，请复制代码到本地运行查看效果。"
+msgstr ""
+"This is a static document, and cannot demonstrate the upload function. "
+"Please copy the code to your local machine to see the effect."
+
+#: src/pages/instaui_page/views.py:236
+msgid "文件上传-大文件"
+msgstr "File Upload - Big File"
+
+#: src/pages/instaui_page/views.py:269
+msgid "文件上传-多文件"
+msgstr "File Upload - Multiple Files"
+
+#: src/pages/instaui_page/views.py:274
+msgid "每个文件单独上传，file 总是 list，list 长度为 1"
+msgstr ""
+"Each file is uploaded separately, and file is always a list, and the "
+"length of the list is 1."
+
+#: src/pages/instaui_page/views.py:306
+msgid "文件上传-多文件(合并上传)"
+msgstr "File Upload - Multiple Files (Merge Upload)"
+
+#: src/pages/instaui_page/views.py:310
+msgid "所有文件合并到一个请求中"
+msgstr "All files are merged into a single request"
+
+#: src/pages/shiki_page/main.py:14
+msgid "instaui-shiki 示例"
+msgstr "instaui-shiki Examples"
+
+#: src/pages/shiki_page/shiki_examples.py:15
+msgid "基础使用"
+msgstr "Basic Usage"
+
+#: src/pages/shiki_page/shiki_examples.py:20
+msgid "code 参数联动"
+msgstr "code Parameter Linkage"
+
+#: src/pages/shiki_page/shiki_examples.py:27
+msgid "diff 标记"
+msgstr "diff Marking"
+
+#: src/pages/shiki_page/shiki_examples.py:40
+msgid "行高亮标记"
+msgstr "Line Highlighting Marking"
+
+#: src/pages/shiki_page/shiki_examples.py:70
+msgid "单词高亮标记"
+msgstr "Word Highlighting Marking"
+
+#: src/pages/shiki_page/shiki_examples.py:92
+msgid "聚焦行"
+msgstr "Focus Row"
+
+#: src/pages/tdesign_page/main.py:13
+msgid "instaui-tdesign 示例"
+msgstr "instaui Examples"
+
+#: src/pages/tdesign_page/views.py:13
+msgid "表格"
+msgstr "Table"
+
+#: src/pages/tdesign_page/views.py:15
+msgid "普通使用"
+msgstr "Normal Usage"
+
+#: src/pages/tdesign_page/views.py:25
+msgid "列插槽"
+msgstr "Column Slot"
+
+#: src/pages/tdesign_page/views.py:27
+msgid "必须使用`ui.state`，否则数据是无法更新的"
+msgstr "You must use `ui.state`, otherwise the data cannot be updated."
+
+#: src/pages/tdesign_page/views.py:46
+msgid "其他"
+msgstr "Other"
+
+#: src/pages/tdesign_page/views.py:48
+msgid "按钮"
+msgstr "Button"
+
+#: src/shared/navigation.py:105
+msgid "搜索"
+msgstr "Search"
+

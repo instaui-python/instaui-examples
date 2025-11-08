@@ -3,9 +3,13 @@ from instaui import zero, cdn
 from instaui_tdesign import cdn as td_cdn
 from pathlib import Path
 import xml.etree.ElementTree as ET
+
 from .cmd import parse_offline_flag
 
-WEBSITE_DIR = Path(__file__).parent.parent.parent / "website"
+SRC_ROOT = Path(__file__).parent.parent
+ICONS_DIR = SRC_ROOT / "assets/icons"
+SHARED_ICONS_SVG_FILE = ICONS_DIR / "shared.svg"
+WEBSITE_DIR = SRC_ROOT.parent / "website"
 
 if not WEBSITE_DIR.exists():
     WEBSITE_DIR.mkdir()
@@ -15,35 +19,46 @@ def zero_dist_to_website(
     render_fn: Callable,
     *,
     file: str,
+    icons_svg_file: Optional[str] = None,
+    output_dir: Optional[Path] = None,
     cdns: Optional[list] = None,
-    base_folder: Optional[Path] = None,
+    # base_folder: Optional[Path] = None,
     debug_report: bool = False,
 ):
+    output_dir = output_dir or WEBSITE_DIR
+
+    def icons_svg_path_fn():
+        shared_svg = add_td_prefix_to_symbols(SHARED_ICONS_SVG_FILE)
+        page_svg = (
+            add_td_prefix_to_symbols(ICONS_DIR / icons_svg_file)
+            if icons_svg_file
+            else None
+        )
+
+        if page_svg:
+            return merge_svg_symbols(shared_svg, page_svg)
+
+        return shared_svg
+
     offline = parse_offline_flag()
     cdn_resource_overrides = (
         None if offline else [cdn.override(), td_cdn.override(), *(cdns or [])]
     )
 
-    file_path = WEBSITE_DIR / file
+    file_path = output_dir / file
     if not file_path.parent.exists():
         file_path.parent.mkdir(parents=True)
 
-    icons_svg_path = (
-        (lambda: add_td_prefix_to_symbols(base_folder))
-        if base_folder is not None
-        else None
-    )
-
     z = zero(
-        icons_svg_path=icons_svg_path,
+        icons_svg_path=icons_svg_path_fn,
         cdn_resource_overrides=cdn_resource_overrides,
     )
 
     if debug_report:
-        z.to_debug_report(render_fn, file=WEBSITE_DIR / file)
+        z.to_debug_report(render_fn, file=output_dir / file)
         return
 
-    z.to_html(render_fn, file=WEBSITE_DIR / file)
+    z.to_html(render_fn, file=output_dir / file)
 
 
 def add_td_prefix_to_symbols(
@@ -107,3 +122,36 @@ def add_td_prefix_to_symbols(
     # Convert the modified ElementTree back to a string
     # Using 'unicode' encoding returns a string, xml_declaration=False avoids adding <?xml...?> if not present
     return ET.tostring(root, encoding="unicode", xml_declaration=False)
+
+
+def merge_svg_symbols(svg1: str, svg2: str) -> str:
+    """
+    合并两个包含 <symbol> 的 SVG 字符串。
+    - 若有重复的 symbol id，会抛出 ValueError。
+    - 返回一个新的 SVG 字符串，包含所有 symbol。
+    """
+
+    def extract_symbols(svg_str):
+        svg_str = svg_str.strip()
+        root = ET.fromstring(svg_str)
+        symbols = []
+        for elem in root.findall(".//{*}symbol") + root.findall(".//symbol"):
+            symbols.append(elem)
+        return symbols
+
+    symbols1 = extract_symbols(svg1)
+    symbols2 = extract_symbols(svg2)
+
+    ids = [s.attrib.get("id") for s in symbols1 + symbols2 if "id" in s.attrib]
+    duplicates = {i for i in ids if ids.count(i) > 1}
+    if duplicates:
+        raise ValueError(f"发现重复的 symbol id: {', '.join(duplicates)}")
+
+    svg_root = ET.Element(
+        "svg", attrib={"xmlns": "http://www.w3.org/2000/svg", "style": "display:none;"}
+    )
+
+    for s in symbols1 + symbols2:
+        svg_root.append(s)
+
+    return ET.tostring(svg_root, encoding="unicode")
