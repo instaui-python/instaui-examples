@@ -17,6 +17,7 @@ def zero_dist_to_website(
     file: str,
     cdns: Optional[list] = None,
     base_folder: Optional[Path] = None,
+    debug_report: bool = False,
 ):
     offline = parse_offline_flag()
     cdn_resource_overrides = (
@@ -33,10 +34,16 @@ def zero_dist_to_website(
         else None
     )
 
-    zero(
+    z = zero(
         icons_svg_path=icons_svg_path,
         cdn_resource_overrides=cdn_resource_overrides,
-    ).to_html(render_fn, file=WEBSITE_DIR / file)
+    )
+
+    if debug_report:
+        z.to_debug_report(render_fn, file=WEBSITE_DIR / file)
+        return
+
+    z.to_html(render_fn, file=WEBSITE_DIR / file)
 
 
 def add_td_prefix_to_symbols(
