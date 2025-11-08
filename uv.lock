@@ -351,7 +351,7 @@ wheels = [
 
 [[package]]
 name = "instaui"
-version = "0.7.15"
+version = "0.7.17"
 source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
 dependencies = [
     { name = "jinja2" },
@@ -359,9 +359,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/fc/ea/3a5144e5b7302c28cf1fec4fc18c43fdd600b0b143c7dfdb46d1e96f59df/instaui-0.7.15.tar.gz", hash = "sha256:9a79b63f0e2d4916261ba8a98f0d1f9fe26de83a58bdcf8fcf0b200b58257481", size = 400163, upload-time = "2025-11-05T14:00:45.801Z" }
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/19/58/b5ce98613614c2d43b73d60aa2064e6e59877a5e03b27bc2d898cf176114/instaui-0.7.17.tar.gz", hash = "sha256:66f8bb5407e46fb0965d524f20c8c25c25e826a880c7fee2e4d9aaca24447639", size = 401772, upload-time = "2025-11-07T00:51:25.547Z" }
 wheels = [
-    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/8b/af/9388011c55a636682af6595f827dfdd3f06272deaea5393ffa088a3c56ee/instaui-0.7.15-py3-none-any.whl", hash = "sha256:4e8ce0a562e0b2684413514917b5940eb4a7445afa2f4caab79de17ea34e9bb9", size = 483387, upload-time = "2025-11-05T14:00:35.2Z" },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/ab/2d/6d34c9694f86fe6e501db0e257226f9db9057a46d13b872e26505d8d3d16/instaui-0.7.17-py3-none-any.whl", hash = "sha256:f8bf485a16165dc04547add40514c62d6dd05093230dc9c385293ab06ae05b81", size = 485574, upload-time = "2025-11-07T00:51:23.568Z" },
 ]
 
 [package.optional-dependencies]
@@ -411,9 +411,9 @@ lint = [
 
 [package.metadata]
 requires-dist = [
-    { name = "instaui", extras = ["web"], specifier = ">=0.7.15" },
+    { name = "instaui", extras = ["web"], specifier = ">=0.7.17" },
     { name = "instaui-echarts", specifier = ">=0.4.2" },
-    { name = "instaui-shiki", specifier = ">=0.5.4" },
+    { name = "instaui-shiki", specifier = ">=0.5.5" },
     { name = "instaui-tdesign", extras = ["all"], specifier = ">=0.5.5" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "polars", specifier = ">=1.34.0" },
@@ -428,14 +428,14 @@ lint = [{ name = "ruff", specifier = "==0.12.2" }]
 
 [[package]]
 name = "instaui-shiki"
-version = "0.5.4"
+version = "0.5.5"
 source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
 dependencies = [
     { name = "instaui" },
 ]
-sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/d9/f8/4fb2ebca4066dfce40de91f5485e6acd1dc8035f30ca8482479cc0791e3d/instaui_shiki-0.5.4.tar.gz", hash = "sha256:430848c7e4b428aeff7fdfcf555fdea031e6d7b589393bd6c9a98d031d421014", size = 325149, upload-time = "2025-10-26T14:30:09.578Z" }
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/06/c9/5fb9234992f7604894b95de765f1b9f63cd232efcd5579d23ba1b4e85065/instaui_shiki-0.5.5.tar.gz", hash = "sha256:a4dfdd74e76d929ab94642a44a9c746e1ff721024f5a124030791ae3e84013e1", size = 325180, upload-time = "2025-11-07T00:27:51.009Z" }
 wheels = [
-    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/bc/14/824881b5e4a5958fd1dc0370ab675906b74f62e92c36f96b817db4cd5666/instaui_shiki-0.5.4-py3-none-any.whl", hash = "sha256:1e286b512c55d7cdca8fe9da40c29c9b70dd44d033a1868a5521d25a2cd70e06", size = 330619, upload-time = "2025-10-26T14:30:07.382Z" },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/e8/fa/07d9e9544d16ff51af67b1fd9a4b881e38e4e088b4bbe038fa21195c248f/instaui_shiki-0.5.5-py3-none-any.whl", hash = "sha256:0feb0efaf96840f522386eed159339ab63c9cba7eabb1bc1b2a98a60a03679b0", size = 330650, upload-time = "2025-11-07T00:27:49.099Z" },
 ]
 
 [[package]]

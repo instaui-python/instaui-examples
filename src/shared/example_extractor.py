@@ -205,36 +205,28 @@ ui.server(debug=True).run()
     )
 
     with (
+        ui.lazy_render(height="500px")
+        .style("height:500px")
+        .props({"id": f"{info.title_id.lower().replace(' ', '-')}"}),
+        ui.column(height="100%", gap="0", as_child=True),
         td.card(
-            title=info.title, header_bordered=True, subtitle=info.description
-        ).props({"id": f"{info.title_id.lower().replace(' ', '-')}"}),
-        ui.grid(columns=2),
+            title=info.title,
+            header_bordered=True,
+            subtitle=info.description,
+            body_style={"flex": "1", "overflow-y": "hidden"},
+        ),
+        ui.grid(columns=2, height="100%", overflow_y="hidden"),
     ):
-        with td.card(body_style={"height": "400px"}):
+        with (
+            ui.box(overflow_y="auto", as_child=True),
+            td.card(body_style={"height": "100%"}),
+        ):
             info.fn()
         shiki(code, line_numbers=True, transformers=["notationHighlight"])
 
 
 def example_list_view(infos: list[ExampleInfo]):
-    goto_nav_node = ui.js_event(
-        code=r"""()=>{
-  const hash = window.location.hash;
-  if (hash) {
-    const el = document.querySelector(hash);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }                                                           
-}"""
-    )
-
-    with (
-        ui.column(gap="4")
-        .scoped_style("content-visibility: auto;", selector="> *")
-        .scoped_style("contain-intrinsic-size:auto 22px", selector="> *.t-tag")
-        .scoped_style("contain-intrinsic-size:auto 400px", selector="> *.t-card")
-        .on_mounted(goto_nav_node)
-    ):
+    with ui.column(gap="4"):
         for info in infos:
             if info.children:
                 td.tag(

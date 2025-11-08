@@ -99,10 +99,10 @@ return items
 
     # ui
 
-    with ui.box(), td.affix():
-        with ui.column(mt="4"):
-            td.input(search_input, clearable=True)
-        with td.anchor(target_offset=100):
+    with ui.column():
+        td.input(search_input, clearable=True)
+
+        with td.anchor(target_offset=100, container=".example-list"):
             with ui.vfor(items) as info:
                 with ui.match(info["children"]) as match:
                     with match.case(None):

@@ -13,11 +13,8 @@ if str(SRC_DIR) not in sys.path:
 
 from utils import I18nState
 from shared.cmd import parse_no_server_flag
-from shared.navigation import navigation_tree, nav_items_from_infos
-from shared.dependency_view import dependencies_zone
+from shared.main_view import main_view
 from shared.website_utils import zero_dist_to_website
-from shared.example_extractor import example_list_view
-from shared.page_header import header_view
 from shared.css import apply_css
 
 td.use(theme="violet", locale="en_US")
@@ -32,27 +29,17 @@ def home():
     N_ = I18nState.get()
 
     with td.config_provider(global_config=locale_dict):
-        header_view(
-            title=N_("instaui-echarts 示例"),
-            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/echarts",
+        main_view(
+            header_title=N_("instaui-echarts 示例"),
+            github_link="https://github.com/instaui-python/instaui-echarts",
+            example_infos=infos,
+            dependencies=[
+                f"instaui[web]>={ui.__version__}",
+                f"instaui_echarts>={echarts_version}",
+                f"instaui_tdesign>={td.__version__}",
+                "polars",
+            ],
         )
-
-        with ui.grid(columns="auto 1fr"):
-            navigation_tree(nav_items_from_infos(infos))
-
-            with ui.container(size="4"), ui.column(gap="4"):
-                dependencies_zone(
-                    [
-                        f"instaui[web]>={ui.__version__}",
-                        f"instaui_echarts>={echarts_version}",
-                        f"instaui_tdesign>={td.__version__}",
-                        "polars",
-                    ]
-                )
-
-                example_list_view(infos)
-
-        td.back_top(container=".insta-main", shape="circle", theme="primary")
 
 
 if not parse_no_server_flag():
