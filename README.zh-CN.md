@@ -14,6 +14,26 @@
 > 由于国内 cdn 速度限制，第一次访问时可能会长时间加载
 
 
+## 本地运行
+你需要安装好 `uv`。
+
+
+克隆项目到本地
+```shell
+git clone https://gitee.com/carson_add/instaui-examples
+```
+
+cd 到项目根目录
+```shell
+cd instaui-examples
+```
+
+运行项目
+```shell
+uv run src/main.py
+```
+
+
 ## 完全离线 web 页面
 本项目可以生成完全离线的本地网页。
 

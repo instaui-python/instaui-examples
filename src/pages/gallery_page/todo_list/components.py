@@ -1,8 +1,8 @@
 from typing import Literal
 from instaui import ui
-import instaui_tdesign as td
-from state import State, TTodo
-from snippets import fancy_logo_text
+from instaui_tdesign import td
+from .state import State, TTodo
+from .snippets import fancy_logo_text
 
 
 def todo_app():
@@ -34,10 +34,10 @@ def heading_view():
             with td.switch(value=dark, size="large").add_slot("label") as p:
                 with ui.match(p.slot_props("value")) as mt:
                     with mt.case(True):
-                        ui.icon("td:mode-dark-filled")
+                        ui.icon("todo_list:mode-dark-filled")
 
                     with mt.case(False):
-                        ui.icon("td:mode-light-filled")
+                        ui.icon("todo_list:mode-light-filled")
 
 
 def new_task_view():
@@ -50,7 +50,7 @@ def new_task_view():
             clearable=True,
         ).on_enter(state.add_task)
         td.button(
-            icon="add", disabled=ui.not_(state.can_add_task), shape="circle"
+            icon="todo_list:add", disabled=ui.not_(state.can_add_task), shape="circle"
         ).on_click(state.add_task)
 
 
@@ -80,14 +80,14 @@ def tasks_list_view(type: Literal["all", "active", "completed"]):
                             td.checkbox(todo["done"], label=todo["name"])
 
                             td.button(
-                                icon="edit",
+                                icon="todo_list:edit",
                                 shape="circle",
                                 variant="outline",
                                 theme="primary",
                             ).on_click(state.show_edit_input, extends=[todo["id"]])
 
                             td.button(
-                                icon="delete-1-filled",
+                                icon="todo_list:delete-1-filled",
                                 disabled=ui.not_(todo["done"]),
                                 shape="circle",
                                 variant="dashed",

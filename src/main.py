@@ -13,6 +13,7 @@ from pages.echarts_page.main import page as echarts_page
 from pages.shiki_page.main import page as shiki_page
 from pages.tdesign_page.main import page as tdesign_page
 from pages.gallery_page.etch_sketch.main import page as etch_sketch_page
+from pages.gallery_page.todo_list.main import page as todo_list_page
 
 td.use(theme="violet", locale="en_US")
 apply_css()
@@ -38,20 +39,8 @@ ui.page("/instaui-echarts")(wrapped_page(echarts_page))
 ui.page("/instaui-shiki")(wrapped_page(shiki_page))
 ui.page("/instaui-tdesign")(wrapped_page(tdesign_page))
 ui.page("/gallery/etch-sketch")(wrapped_page(etch_sketch_page))
+# ui.page("/gallery/todo-list")(wrapped_page(todo_list_page))
 
 
 if not parse_no_server_flag():
     ui.server(debug=True).run()
-
-
-def build_state_html():
-    pass
-    # zero_dist_to_website(
-    #     home,
-    #     base_folder=Path(__file__).parent,
-    #     file="index.html",
-    # )
-
-
-if __name__ == "__main__":
-    build_state_html()

@@ -1,4 +1,4 @@
-from instaui_tdesign import td, locales
+from instaui_tdesign import td
 from shared.css import apply_css
 
 from shared.website_utils import zero_dist_to_website
@@ -20,6 +20,8 @@ def build_website():
     zero_dist_to_website(shiki_page, file="instaui-shiki.html")
     zero_dist_to_website(tdesign_page, file="instaui-tdesign.html")
     zero_dist_to_website(etch_sketch_page, file="gallery/etch-sketch.html")
+
+    print("✅ All html pages generated successfully. see website folder.")
 
 
 if __name__ == "__main__":

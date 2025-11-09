@@ -1,6 +1,8 @@
 from typing import Callable, Optional
 from instaui import zero, cdn
 from instaui_tdesign import cdn as td_cdn
+from instaui_echarts import cdn as echarts_cdn
+from instaui_shiki import cdn as shiki_cdn
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -42,7 +44,15 @@ def zero_dist_to_website(
 
     offline = parse_offline_flag()
     cdn_resource_overrides = (
-        None if offline else [cdn.override(), td_cdn.override(), *(cdns or [])]
+        None
+        if offline
+        else [
+            cdn.override(),
+            td_cdn.override(),
+            echarts_cdn.override(),
+            shiki_cdn.override(),
+            *(cdns or []),
+        ]
     )
 
     file_path = output_dir / file

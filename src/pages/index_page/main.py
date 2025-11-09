@@ -3,10 +3,13 @@ from instaui_tdesign import td
 
 from page_state import I18nState
 from shared.page_header import header_view
+from shared.cmd import parse_offline_flag
+from shared.link import with_resolve_link_path
 
 
 def page():
     N_ = I18nState.get()
+    resolve_link_path = with_resolve_link_path()
 
     with ui.container():
         header_view(
@@ -19,19 +22,26 @@ def page():
             ui.text(N_("示例"), size="7", weight="bold")
 
         with ui.grid(columns=ui.grid.auto_columns(min_width="280px")):
-            card("index:feather", "instaui", N_("基础库"), "./instaui")
+            card(
+                "index:feather", "instaui", N_("基础库"), resolve_link_path("./instaui")
+            )
             card(
                 "index:chart",
                 "instaui echarts",
                 N_("Echarts 图表"),
-                "./instaui-echarts",
+                resolve_link_path("./instaui-echarts"),
             )
-            card("index:code", "instaui shiki", N_("代码高亮"), "./instaui-shiki")
+            card(
+                "index:code",
+                "instaui shiki",
+                N_("代码高亮"),
+                resolve_link_path("./instaui-shiki"),
+            )
             card(
                 "index:td",
                 "instaui tdesign",
                 N_("TDesign 组件"),
-                "./instaui-tdesign",
+                resolve_link_path("./instaui-tdesign"),
             )
 
         td.divider()
@@ -44,7 +54,14 @@ def page():
                 "index:gallery",
                 "etch sketch",
                 "etch sketch(solid js example)",
-                "./gallery/etch-sketch",
+                resolve_link_path("./gallery/etch-sketch"),
+            )
+
+            card(
+                "index:gallery",
+                "todo list",
+                "todo list app",
+                resolve_link_path("./gallery/todo-list"),
             )
 
 
