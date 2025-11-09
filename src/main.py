@@ -6,14 +6,8 @@ from shared.css import apply_css
 from shared.cmd import parse_no_server_flag
 from shared.lang_select import I18nPageState
 
-# from shared.website_utils import zero_dist_to_website
-from pages.index_page.main import page as index_page
-from pages.instaui_page.main import page as instaui_page
-from pages.echarts_page.main import page as echarts_page
-from pages.shiki_page.main import page as shiki_page
-from pages.tdesign_page.main import page as tdesign_page
-from pages.gallery_page.etch_sketch.main import page as etch_sketch_page
-from pages.gallery_page.todo_list.main import page as todo_list_page
+from page_loader import get_page_infos
+
 
 td.use(theme="violet", locale="en_US")
 apply_css()
@@ -33,13 +27,8 @@ def wrapped_page(page_fn: Callable):
     return page
 
 
-ui.page("/")(wrapped_page(index_page))
-ui.page("/instaui")(wrapped_page(instaui_page))
-ui.page("/instaui-echarts")(wrapped_page(echarts_page))
-ui.page("/instaui-shiki")(wrapped_page(shiki_page))
-ui.page("/instaui-tdesign")(wrapped_page(tdesign_page))
-ui.page("/gallery/etch-sketch")(wrapped_page(etch_sketch_page))
-ui.page("/gallery/todo-list")(wrapped_page(todo_list_page))
+for info in get_page_infos():
+    ui.page(info.web_url)(wrapped_page(info.page_fn))
 
 
 if not parse_no_server_flag():

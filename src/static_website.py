@@ -1,29 +1,22 @@
 from instaui_tdesign import td
 from shared.css import apply_css
-
+from shared.cmd import parse_offline_flag
 from shared.website_utils import zero_dist_to_website
-from pages.index_page.main import page as index_page
-from pages.instaui_page.main import page as instaui_page
-from pages.echarts_page.main import page as echarts_page
-from pages.shiki_page.main import page as shiki_page
-from pages.tdesign_page.main import page as tdesign_page
-from pages.gallery_page.etch_sketch.main import page as etch_sketch_page
-from pages.gallery_page.todo_list.main import page as todo_list_page
+from page_loader import get_page_infos
+
 
 td.use(theme="violet", locale="en_US")
 apply_css()
 
 
 def build_website():
-    zero_dist_to_website(index_page, file="index.html", icons_svg_file="index.svg")
-    zero_dist_to_website(instaui_page, file="instaui.html")
-    zero_dist_to_website(echarts_page, file="instaui-echarts.html")
-    zero_dist_to_website(shiki_page, file="instaui-shiki.html")
-    zero_dist_to_website(tdesign_page, file="instaui-tdesign.html")
-    zero_dist_to_website(etch_sketch_page, file="gallery/etch-sketch.html")
-    zero_dist_to_website(
-        todo_list_page, file="gallery/todo-list.html", icons_svg_file="todo_list.svg"
-    )
+    offline = parse_offline_flag()
+    print(f"🔧 Building website[offline={offline}]...")
+
+    for info in get_page_infos():
+        zero_dist_to_website(
+            info.page_fn, file=info.file, icons_svg_file=info.icons_svg_file
+        )
 
     print("✅ All html pages generated successfully. see website folder.")
 
