@@ -414,7 +414,7 @@ requires-dist = [
     { name = "instaui", extras = ["web"], specifier = ">=0.7.18" },
     { name = "instaui-echarts", specifier = ">=0.4.2" },
     { name = "instaui-shiki", specifier = ">=0.5.5" },
-    { name = "instaui-tdesign", extras = ["all"], specifier = ">=0.5.5" },
+    { name = "instaui-tdesign", extras = ["all"], editable = "../instaui-tdesign" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "polars", specifier = ">=1.34.0" },
 ]
@@ -441,19 +441,37 @@ wheels = [
 [[package]]
 name = "instaui-tdesign"
 version = "0.5.5"
-source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
+source = { editable = "../instaui-tdesign" }
 dependencies = [
     { name = "instaui" },
-]
-sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/f9/c9/836a3a0895708207d90e19b9acbe0a3a82d9a1e1e27d26fc955bc009a736/instaui_tdesign-0.5.5.tar.gz", hash = "sha256:76a96f5bb6595e63c4e2782fcd7b9315c8869bdb75b5be1bebdc7f1e036d842b", size = 473519, upload-time = "2025-11-05T12:33:24.099Z" }
-wheels = [
-    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/9e/ea/bef27c446c6e804a2680e5daf6de1f9f3c8f29df71a99520696665051cab/instaui_tdesign-0.5.5-py3-none-any.whl", hash = "sha256:472500ad00523f7a1a88df1c422f5f828b6ad677840cfa565ca057b060d2472b", size = 540109, upload-time = "2025-11-05T12:33:21.644Z" },
 ]
 
 [package.optional-dependencies]
 all = [
     { name = "instaui", extra = ["all"] },
 ]
+
+[package.metadata]
+requires-dist = [
+    { name = "instaui", specifier = ">=0.7.14" },
+    { name = "instaui", extras = ["all"], marker = "extra == 'all'" },
+    { name = "instaui", extras = ["web"], marker = "extra == 'web'" },
+    { name = "instaui", extras = ["webview"], marker = "extra == 'webview'" },
+]
+provides-extras = ["web", "webview", "all"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "instaui", extras = ["web"] },
+    { name = "pandas", specifier = ">=2.0.3" },
+    { name = "playwright", specifier = "==1.48.0" },
+    { name = "polars", specifier = ">=1.34.0" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-asyncio", specifier = ">=0.24.0" },
+    { name = "pytest-playwright", specifier = ">=0.7.1" },
+]
+git = [{ name = "pre-commit", specifier = ">=3.5.0" }]
+lint = [{ name = "ruff", specifier = "==0.12.2" }]
 
 [[package]]
 name = "jinja2"

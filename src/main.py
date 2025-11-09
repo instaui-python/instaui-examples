@@ -39,7 +39,7 @@ ui.page("/instaui-echarts")(wrapped_page(echarts_page))
 ui.page("/instaui-shiki")(wrapped_page(shiki_page))
 ui.page("/instaui-tdesign")(wrapped_page(tdesign_page))
 ui.page("/gallery/etch-sketch")(wrapped_page(etch_sketch_page))
-# ui.page("/gallery/todo-list")(wrapped_page(todo_list_page))
+ui.page("/gallery/todo-list")(wrapped_page(todo_list_page))
 
 
 if not parse_no_server_flag():

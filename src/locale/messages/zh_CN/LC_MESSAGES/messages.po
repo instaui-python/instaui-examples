@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-09 03:02+0800\n"
+"POT-Creation-Date: 2025-11-09 16:03+0800\n"
 "PO-Revision-Date: 2025-11-08 20:42+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -38,15 +38,15 @@ msgstr ""
 msgid "联动"
 msgstr ""
 
-#: src/pages/echarts_page/graphics_examples.py:116
+#: src/pages/echarts_page/graphics_examples.py:125
 msgid "使用 polars 作为数据源"
 msgstr ""
 
-#: src/pages/echarts_page/graphics_examples.py:137
+#: src/pages/echarts_page/graphics_examples.py:146
 msgid "坐标轴排序-利用数据间接实现"
 msgstr ""
 
-#: src/pages/echarts_page/graphics_examples.py:158
+#: src/pages/echarts_page/graphics_examples.py:167
 msgid "坐标轴排序-axis api"
 msgstr ""
 
@@ -54,31 +54,63 @@ msgstr ""
 msgid "instaui-echarts 示例"
 msgstr ""
 
-#: src/pages/index_page/main.py:19
-msgid "示例"
+#: src/pages/gallery_page/todo_list/components.py:18
+msgid "所有任务"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:21
+msgid "进行中"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:24
+msgid "已完成"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:53
+msgid "输入内容，按回车添加新任务"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:104
+msgid "确定"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:117
+msgid "有"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:121
+msgid "个进行中的任务"
+msgstr ""
+
+#: src/pages/gallery_page/todo_list/components.py:125
+msgid "清空已完成任务"
 msgstr ""
 
 #: src/pages/index_page/main.py:22
-msgid "基础库"
+msgid "示例"
 msgstr ""
 
 #: src/pages/index_page/main.py:26
+msgid "基础库"
+msgstr ""
+
+#: src/pages/index_page/main.py:31
 msgid "Echarts 图表"
 msgstr ""
 
-#: src/pages/index_page/main.py:29
+#: src/pages/index_page/main.py:37
 msgid "代码高亮"
 msgstr ""
 
-#: src/pages/index_page/main.py:33
+#: src/pages/index_page/main.py:43
 msgid "TDesign 组件"
 msgstr ""
 
-#: src/pages/index_page/main.py:40
+#: src/pages/index_page/main.py:50
 msgid "更多示例"
 msgstr ""
 
-#: src/pages/instaui_page/main.py:15
+#: src/pages/instaui_page/main.py:13
 msgid "instaui 示例"
 msgstr ""
 
@@ -251,7 +283,7 @@ msgstr ""
 msgid "按钮"
 msgstr ""
 
-#: src/shared/navigation.py:105
+#: src/shared/navigation.py:106
 msgid "搜索"
 msgstr ""
 

@@ -21,3 +21,6 @@ dev = [
 lint = [
     "ruff==0.12.2",
 ]
+
+[tool.uv.sources]
+instaui-tdesign = { path = "../instaui-tdesign", editable = true }
