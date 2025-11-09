@@ -24,7 +24,6 @@ def zero_dist_to_website(
     icons_svg_file: Optional[str] = None,
     output_dir: Optional[Path] = None,
     cdns: Optional[list] = None,
-    # base_folder: Optional[Path] = None,
     debug_report: bool = False,
 ):
     output_dir = output_dir or WEBSITE_DIR
@@ -145,7 +144,7 @@ def merge_svg_symbols(svg1: str, svg2: str) -> str:
         svg_str = svg_str.strip()
         root = ET.fromstring(svg_str)
         symbols = []
-        for elem in root.findall(".//{*}symbol") + root.findall(".//symbol"):
+        for elem in root.findall(".//{*}symbol"):
             symbols.append(elem)
         return symbols
 

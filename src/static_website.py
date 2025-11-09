@@ -21,7 +21,9 @@ def build_website():
     zero_dist_to_website(shiki_page, file="instaui-shiki.html")
     zero_dist_to_website(tdesign_page, file="instaui-tdesign.html")
     zero_dist_to_website(etch_sketch_page, file="gallery/etch-sketch.html")
-    zero_dist_to_website(todo_list_page, file="gallery/todo-list.html")
+    zero_dist_to_website(
+        todo_list_page, file="gallery/todo-list.html", icons_svg_file="todo_list.svg"
+    )
 
     print("✅ All html pages generated successfully. see website folder.")
 
