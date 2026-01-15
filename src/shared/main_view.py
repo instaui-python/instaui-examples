@@ -15,10 +15,10 @@ def main_view(
 ):
     goto_nav_node = ui.js_event(
         code=r"""()=>{
-    const hash = window.location.hash;
+    const hash = window.location.hash.slice(1);
 
     if (hash) {
-        const el = document.querySelector(hash);
+        const el = document.getElementById(hash);
         if (el) {
             setTimeout(() => {
                 el.scrollIntoView({ behavior: 'smooth', block: 'start' });
