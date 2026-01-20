@@ -317,7 +317,7 @@ lint = [
 requires-dist = [
     { name = "instaui", extras = ["web"], specifier = ">=0.8.6" },
     { name = "instaui-echarts", specifier = ">=0.5.0" },
-    { name = "instaui-shiki", specifier = ">=0.6.2" },
+    { name = "instaui-shiki", specifier = ">=0.6.3" },
     { name = "instaui-tdesign", extras = ["web"], specifier = ">=0.6.0" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "polars", specifier = ">=1.34.0" },
@@ -332,14 +332,14 @@ lint = [{ name = "ruff", specifier = "==0.12.2" }]
 
 [[package]]
 name = "instaui-shiki"
-version = "0.6.2"
+version = "0.6.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "instaui" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/83/8f/30e34272a279de5590e4eba6ee034e9570ca18b4b93162b54f95d61cfa3e/instaui_shiki-0.6.2.tar.gz", hash = "sha256:f9766a3d6dcf77e4dcd0484712aee3f806dd4c9499a71d5a83bb8aa73c13b3d1", size = 325692, upload-time = "2026-01-18T11:35:17.158Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/90/8c/8e2d506a1082c400b49eaf4a58d5e873833e943779cd20a049948cbf1679/instaui_shiki-0.6.3.tar.gz", hash = "sha256:90d868196d1f194b892b12dead52b616f7c304863e9697492094c93e687ab1bf", size = 325694, upload-time = "2026-01-19T21:26:29.503Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ee/19/7012ac8c252ec255352679de4ceabac2fadf3e7744ae96033e8e0616d3a4/instaui_shiki-0.6.2-py3-none-any.whl", hash = "sha256:0c26902e1dc3d362849669d7332de0324bece0c9f4734a6af31cc4dbf6199156", size = 332508, upload-time = "2026-01-18T11:35:14.752Z" },
+    { url = "https://files.pythonhosted.org/packages/21/07/6ae669fc8bc656b4fc8ec9556975e128d1f788b38ae6450f3c2d619af9a1/instaui_shiki-0.6.3-py3-none-any.whl", hash = "sha256:1d78190d804c5fd20377370fc58ca629fce755c08dad414c382b78a6c8ad6c86", size = 332497, upload-time = "2026-01-19T21:26:27.651Z" },
 ]
 
 [[package]]
