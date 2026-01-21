@@ -6,7 +6,7 @@ from shared.page_header import header_view
 
 def page():
     ui.add_style(r".cell {outline: 1px solid #1f1f1f;}")
-    ui.add_js_code(r"""
+    ui.add_js_inline(r"""
     function randomHexColorString() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
     }
