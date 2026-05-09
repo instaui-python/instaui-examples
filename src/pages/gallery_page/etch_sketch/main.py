@@ -1,4 +1,4 @@
-from instaui import html, ui
+from instaui import html, tailwind, ui
 
 from shared.layout import container
 from shared.page_header import header_view
@@ -7,6 +7,8 @@ from shared.page_header import header_view
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
+
     ui.add_style(r".cell {outline: 1px solid #1f1f1f;}")
     ui.add_js_inline(r"""
     function randomHexColorString() {

@@ -1,11 +1,14 @@
-from instaui import ui
+from instaui import tailwind, ui
 from instaui_tdesign import td
-from shared.main_view import main_view
+
 from page_state import I18nState
+from shared.main_view import main_view
+
 from . import views
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
     infos = views.index()
     N_ = I18nState.get()
 

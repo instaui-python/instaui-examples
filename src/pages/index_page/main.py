@@ -1,4 +1,4 @@
-from instaui import html, ui
+from instaui import html, tailwind, ui
 from instaui_tdesign import td
 
 from page_state import I18nState
@@ -9,6 +9,7 @@ from shared.page_header import header_view
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
     N_ = I18nState.get()
     resolve_link_path = with_resolve_link_path()
 

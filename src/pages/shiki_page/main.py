@@ -1,12 +1,15 @@
-from instaui import ui
-from instaui_tdesign import td
+from instaui import tailwind, ui
 from instaui_shiki import __version__ as shiki_version
-from shared.main_view import main_view
+from instaui_tdesign import td
+
 from page_state import I18nState
+from shared.main_view import main_view
+
 from . import shiki_examples
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
     infos = shiki_examples.index()
     N_ = I18nState.get()
 

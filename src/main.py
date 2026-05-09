@@ -9,7 +9,6 @@ from shared.cmd import parse_no_server_flag
 from shared.css import apply_css
 from shared.lang_select import I18nPageState
 
-tailwind.use_tailwind(version="v4")
 td.use(theme="violet", locale="en_US")
 apply_css()
 

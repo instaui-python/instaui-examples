@@ -1,12 +1,15 @@
-from instaui import ui
-from instaui_tdesign import td
+from instaui import tailwind, ui
 from instaui_echarts import __version__ as echarts_version
+from instaui_tdesign import td
+
 from page_state import I18nState
 from shared.main_view import main_view
+
 from . import graphics_examples
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
     N_ = I18nState.get()
     infos = graphics_examples.index()
 

@@ -1,4 +1,4 @@
-from instaui import ui
+from instaui import tailwind, ui
 from instaui_tdesign import td
 
 from page_state import I18nState
@@ -8,6 +8,7 @@ from . import views
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
     N_ = I18nState.get()
     infos = views.index()
 

@@ -1,4 +1,4 @@
-from instaui import ui
+from instaui import tailwind, ui
 
 from shared.layout import container
 from shared.page_header import header_view
@@ -7,6 +7,7 @@ from .components import todo_app
 
 
 def page():
+    tailwind.use_tailwind(version="v4")
 
     with container():
         header_view(
