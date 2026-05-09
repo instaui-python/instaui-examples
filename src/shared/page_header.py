@@ -1,6 +1,9 @@
 from typing import Optional
-from instaui import ui, html
+
+from instaui import html, ui
+
 from shared.cmd import parse_offline_flag
+
 from .lang_select import lang_select as lang_select_view
 
 
@@ -13,8 +16,10 @@ class header_view:
         github_link: Optional[str] = None,
         home_icon_level: Optional[int] = 1,
     ):
-        with ui.row(align="center", px="3", pb="2").style(
-            "border-bottom: 1px solid #e5e5e5;"
+        with (
+            ui.row(align="center")
+            .classes("px-3 pb-2 gap-2")
+            .style("border-bottom: 1px solid #e5e5e5;")
         ):
             if home_icon_level is not None:
                 with ui.link(href=_home_link(home_icon_level)):
@@ -23,10 +28,10 @@ class header_view:
                     )
 
             if title:
-                ui.heading(title, size="3", weight="bold")
+                html.h3(title).classes("text-base font-bold ")
 
-            ui.box(flex_grow="1")
-            self.__action_box = ui.row(align="center")
+            ui.row().classes("grow")
+            self.__action_box = ui.row(align="center").classes("gap-2")
 
             if lang_select:
                 with self.__action_box:
@@ -34,7 +39,7 @@ class header_view:
 
                     if github_link:
                         with (
-                            html.link(github_link)
+                            html.a(herf=github_link)
                             .props({"target": "_blank"})
                             .style("display:inline-flex; align-items:center;")
                         ):

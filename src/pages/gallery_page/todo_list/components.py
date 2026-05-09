@@ -1,9 +1,12 @@
 from typing import Literal
-from instaui import ui
+
+from instaui import html, ui
 from instaui_tdesign import td
+
 from page_state import I18nState
-from .state import State, TTodo
+
 from .snippets import fancy_logo_text
+from .state import State, TTodo
 
 
 def todo_app():
@@ -29,9 +32,8 @@ def todo_app():
 
 def heading_view():
     dark = ui.use_dark()
-    with ui.grid(columns="1fr auto", align="center", mt="2"):
-        with ui.box(mx="auto", as_child=True):
-            fancy_logo_text("TODO List")
+    with ui.grid(columns="1fr auto", align="center").classes("mt-2"):
+        fancy_logo_text("TODO List").classes("mx-auto")
 
         with ui.row(align="center"):
             with td.switch(value=dark, size="large").add_slot("label") as p:
@@ -47,7 +49,7 @@ def new_task_view():
     state = State.get()
     N_ = I18nState.get()
 
-    with ui.row():
+    with ui.row().classes("gap-2"):
         td.input(
             value=state.current_task,
             placeholder=N_("输入内容，按回车添加新任务"),
@@ -78,10 +80,12 @@ def tasks_list_view(type: Literal["all", "active", "completed"]):
 
         # ui
         with ui.vif(show):
-            with ui.box(py="1", px="2"):
+            with html.div().classes("py-2 px-2"):
                 with ui.match(todo["edit"]) as mt:
                     with mt.case(False):
-                        with ui.grid(columns="1fr auto auto", align="center", pt="2"):
+                        with ui.grid(columns="1fr auto auto", align="center").classes(
+                            "pt-2 gap-2"
+                        ):
                             td.checkbox(todo["done"], label=todo["name"])
 
                             td.button(
@@ -89,17 +93,19 @@ def tasks_list_view(type: Literal["all", "active", "completed"]):
                                 shape="circle",
                                 variant="outline",
                                 theme="primary",
-                            ).on_click(state.show_edit_input, extends=[todo["id"]])
+                            ).on_click(state.show_edit_input, params=[todo["id"]])
 
                             td.button(
                                 icon="todo_list:delete-1-filled",
                                 disabled=ui.not_(todo["done"]),
                                 shape="circle",
                                 variant="dashed",
-                            ).on_click(state.delete_task, extends=[todo["id"]])
+                            ).on_click(state.delete_task, params=[todo["id"]])
 
                     with mt.case(True):
-                        with ui.grid(columns="1fr auto", align="center", pt="2"):
+                        with ui.grid(columns="1fr auto", align="center").classes(
+                            "pt-2"
+                        ):
                             td.input(value=todo["name"]).on_enter(switch_edit)
                             td.button(N_("确定")).on_click(switch_edit)
 
@@ -112,15 +118,15 @@ def task_description_view():
     state = State.get()
     N_ = I18nState.get()
 
-    with ui.row(align="center", mt="2"):
-        with ui.row(gap="1"):
+    with ui.row(align="center").classes("mt-2 gap-2"):
+        with ui.row().classes("gap-2"):
             ui.text(N_("有"))
             td.tag(
                 state.task_description["remaining"], theme="primary", variant="outline"
             )
             ui.text(N_("个进行中的任务"))
 
-        ui.row(flex_grow="1")
+        ui.row().classes("grow")
         td.button(
             N_("清空已完成任务"),
             variant="outline",

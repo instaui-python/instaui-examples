@@ -1,11 +1,13 @@
 from __future__ import annotations
-from typing import Callable, Optional
-from dataclasses import dataclass, field
+
 from contextlib import contextmanager
-import textwrap
+from dataclasses import dataclass, field
+from typing import Callable, Optional
+
 from instaui import ui
 from instaui_shiki import shiki
 from instaui_tdesign import td
+
 from systems import code_system
 
 
@@ -115,34 +117,26 @@ ui.server(debug=True).run()
     )
 
     with (
-        ui.box(as_child=True, height={"xs": "80dvh", "md": "500px"}),
-        ui.lazy_render(height="500px").props(
-            {"id": f"{info.title_id.lower().replace(' ', '-')}"}
-        ),
-        ui.column(height="100%", gap="0", as_child=True),
+        ui.lazy_render(height="500px")
+        .props({"id": f"{info.title_id.lower().replace(' ', '-')}"})
+        .classes("h-[80dvh] md:h-[500px]"),
         td.card(
             title=info.title,
             header_bordered=True,
             subtitle=info.description,
             body_style={"flex": "1", "overflow-y": "hidden"},
-        ),
-        ui.grid(
-            columns={"xs": 1, "md": 2},
-            rows={"xs": "2fr 1fr", "md": 1},
-            height="100%",
-            overflow_y="hidden",
+        ).classes("h-full gap-0 flex flex-col"),
+        ui.grid().classes(
+            "grid-cols-1 md:grid-cols-2 grid-rows-[2fr_1fr] md:grid-rows-none h-full overflow-y-hidden gap-2"
         ),
     ):
-        with (
-            ui.box(overflow_y="auto", as_child=True),
-            td.card(body_style={"height": "100%"}),
-        ):
+        with td.card(body_style={"height": "100%"}).classes("overflow-y-hidden"):
             info.fn()
         shiki(code, line_numbers=True)
 
 
 def example_list_view(infos: list[ExampleInfo]):
-    with ui.column(gap="4"):
+    with ui.column().classes("gap-4"):
         for info in infos:
             if info.children:
                 td.tag(

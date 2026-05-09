@@ -1,9 +1,11 @@
 from instaui import ui
 from instaui_tdesign import td
-from .example_extractor import ExampleInfo
-from .navigation import navigation_tree, nav_items_from_infos
+
+from shared.layout import container
+
 from .dependency_view import dependencies_zone
-from .example_extractor import example_list_view
+from .example_extractor import ExampleInfo, example_list_view
+from .navigation import nav_items_from_infos, navigation_tree
 from .page_header import header_view
 
 
@@ -29,18 +31,22 @@ def main_view(
 }"""
     )
 
-    with ui.column(height="100%", overflow_y="hidden").on_mounted(goto_nav_node):
+    with (
+        ui.column()
+        .classes("h-full overflow-y-hidden p-4 gap-2")
+        .on_mounted(goto_nav_node)
+    ):
         header_view(
             title=header_title,
             github_link=github_link,
         )
 
-        with ui.grid(columns="auto 1fr", flex_grow="1", overflow_y="hidden"):
+        with ui.grid(columns="auto 1fr").classes("grow overflow-y-hidden gap-2"):
             navigation_tree(nav_items_from_infos(example_infos))
 
             with (
-                ui.column(gap="4", overflow_y="auto")
-                .classes("example-list")
+                ui.column()
+                .classes("example-list gap-4 overflow-y-auto")
                 .scoped_style("flex:0 0 auto", selector="> *")
             ):
                 dependencies_zone(dependencies)

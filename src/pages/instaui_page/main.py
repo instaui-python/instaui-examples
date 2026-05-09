@@ -1,7 +1,9 @@
 from instaui import ui
 from instaui_tdesign import td
-from shared.main_view import main_view
+
 from page_state import I18nState
+from shared.main_view import main_view
+
 from . import views
 
 

@@ -1,14 +1,15 @@
 from pathlib import Path
 from typing import Callable
-from instaui import ui
-from instaui_tdesign import td, locales
-from shared.css import apply_css
-from shared.cmd import parse_no_server_flag
-from shared.lang_select import I18nPageState
+
+from instaui import tailwind, ui
+from instaui_tdesign import locales, td
 
 from page_loader import get_page_infos
+from shared.cmd import parse_no_server_flag
+from shared.css import apply_css
+from shared.lang_select import I18nPageState
 
-
+tailwind.use_tailwind(version="v4")
 td.use(theme="violet", locale="en_US")
 apply_css()
 
@@ -32,4 +33,4 @@ for info in get_page_infos():
 
 
 if not parse_no_server_flag():
-    ui.server(debug=True).run()
+    ui.server(debug=True).run(port=12345)

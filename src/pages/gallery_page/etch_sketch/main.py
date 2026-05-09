@@ -1,4 +1,6 @@
-from instaui import ui, html
+from instaui import html, ui
+
+from shared.layout import container
 from shared.page_header import header_view
 
 # https://www.solidjs.com/examples/ethasketch
@@ -40,17 +42,18 @@ def page():
         inputs=[grid_size], code=r" (grid_size) => Array(grid_size**2).fill(0)"
     )
 
-    header_view(
-        title="etch sketch",
-        home_icon_level=2,
-        github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/gallery/etch_sketch",
-    )
+    with container():
+        header_view(
+            title="etch sketch",
+            home_icon_level=2,
+            github_link="https://github.com/instaui-python/instaui-examples/tree/main/src/gallery/etch_sketch",
+        )
 
-    with ui.container():
-        with ui.column(m="4"):
-            with ui.box(mx="auto", as_child=True):
-                html.number(min=4, max=20, value=grid_size)
+        with ui.column().classes("m-4"):
+            html.number(min=4, max=20, value=grid_size).classes("mx-auto")
 
-            with ui.grid(columns=template_str, rows=template_str, gap="0", mx="auto"):
+            with ui.grid(columns=template_str, rows=template_str).classes(
+                "gap-0 mx-auto"
+            ):
                 with ui.vfor(cells):
                     ui.element("div").classes("cell").on("mouseenter", mouse_enter)

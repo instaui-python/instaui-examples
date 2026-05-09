@@ -2,7 +2,10 @@ from instaui import ui
 
 
 def fancy_logo_text(text: str):
-    return ui.text(text, size="8", weight="bold").style(r"""
+    return (
+        ui.text(text, weight="bold")
+        .classes("text-5xl")
+        .style(r"""
   background-image: linear-gradient(45deg, #d7c0ff 30%, #c700ff);
   background-size: 200% 200%; 
   -webkit-background-clip: text;
@@ -10,6 +13,7 @@ def fancy_logo_text(text: str):
   -webkit-text-fill-color: transparent;
   color: transparent;
 """)
+    )
 
 
 def page_background():

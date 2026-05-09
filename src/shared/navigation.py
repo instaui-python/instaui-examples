@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
+
 from instaui import ui
 from instaui_tdesign import td
+
 from page_state import I18nState
 
 if TYPE_CHECKING:
@@ -101,7 +104,7 @@ return items
 
     # ui
 
-    with ui.column():
+    with ui.column().classes("gap-2"):
         with td.input(
             search_input, clearable=True, placeholder=N_("搜索")
         ).prefix_icon_slot():

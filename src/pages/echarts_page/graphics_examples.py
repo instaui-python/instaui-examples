@@ -1,10 +1,11 @@
 import polars as pl
 from instaui import ui
+from instaui_echarts import echarts
+from instaui_echarts import graphics as gh
 from instaui_tdesign import td
-from instaui_echarts import graphics as gh, echarts
-from shared.example_extractor import use_example_infos
-from page_state import I18nState
 
+from page_state import I18nState
+from shared.example_extractor import use_example_infos
 
 m_tdesign_import = "from instaui_tdesign import td"
 m_polars_import = "import polars as pl"
@@ -110,10 +111,9 @@ def index():
         )
 
         # mark
-        with ui.column(height="100%"):
+        with ui.column().classes("h-full"):
             td.select(["temp1", "temp2"], value=y_field)
-            with ui.box(flex_grow="1", as_child=True):
-                echarts(options)
+            echarts(options).classes("grow")
         # to
         # td.select(["temp1", "temp2"], value=y_field)
         # echarts(options)
