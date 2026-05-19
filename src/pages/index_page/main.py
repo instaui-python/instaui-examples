@@ -2,7 +2,6 @@ from instaui import html, tailwind, ui
 from instaui_tdesign import td
 
 from page_state import I18nState
-from shared.cmd import parse_offline_flag
 from shared.layout import container
 from shared.link import with_resolve_link_path
 from shared.page_header import header_view

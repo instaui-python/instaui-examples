@@ -1,8 +1,6 @@
 from instaui import ui
 from instaui_tdesign import td
 
-from shared.layout import container
-
 from .dependency_view import dependencies_zone
 from .example_extractor import ExampleInfo, example_list_view
 from .navigation import nav_items_from_infos, navigation_tree

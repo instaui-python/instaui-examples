@@ -1,5 +1,5 @@
-from instaui_tdesign import td
 from instaui_shiki import shiki
+from instaui_tdesign import td
 
 
 def dependencies_zone(libs: list[str]):

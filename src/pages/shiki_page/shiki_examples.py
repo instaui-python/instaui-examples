@@ -1,8 +1,9 @@
 from instaui import ui
-from instaui_tdesign import td
 from instaui_shiki import shiki
-from shared.example_extractor import use_example_infos
+from instaui_tdesign import td
+
 from page_state import I18nState
+from shared.example_extractor import use_example_infos
 
 m_tdesign_import = "from instaui_tdesign import td"
 m_shiki_import = "from instaui_shiki import shiki"

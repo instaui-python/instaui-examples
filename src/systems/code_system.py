@@ -1,7 +1,6 @@
 import inspect
-import textwrap
 import re
-from typing import Callable, Optional
+import textwrap
 
 
 def get_function_body(func):

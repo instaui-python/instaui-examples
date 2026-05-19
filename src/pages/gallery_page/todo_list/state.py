@@ -1,4 +1,5 @@
 from typing import TypedDict
+
 from instaui import ui
 
 
@@ -62,11 +63,11 @@ class State(ui.PageState):
             }""",
         )
 
-        self.delete_task = ui.js_event(
-            inputs=[self.todos],
-            outputs=[self.todos],
-            code="(todos, id) => todos.filter(todo => todo.id !== id)",
-        )
+        # self.delete_task = ui.js_event(
+        #     inputs=[self.todos],
+        #     outputs=[self.todos],
+        #     code="(todos, id) => todos.filter(todo => todo.id !== id)",
+        # )
 
         self.clear_completed_tasks = ui.js_event(
             inputs=[self.todos],
@@ -74,12 +75,12 @@ class State(ui.PageState):
             code="(todos) => todos.filter(todo => !todo.done)",
         )
 
-        self.show_edit_input = ui.js_event(
-            inputs=[self.todos],
-            outputs=[self.todos],
-            code=r"""(todos, id) => {
-            const todo = todos.find(todo => todo.id === id);
-            todo.edit = !todo.edit;
-            return todos;
-    }""",
-        )
+    #     self.show_edit_input = ui.js_event(
+    #         inputs=[self.todos],
+    #         outputs=[self.todos],
+    #         code=r"""(todos, id) => {
+    #         const todo = todos.find(todo => todo.id === id);
+    #         todo.edit = !todo.edit;
+    #         return todos;
+    # }""",
+    #     )

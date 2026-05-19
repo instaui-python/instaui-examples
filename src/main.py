@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Callable
 
-from instaui import tailwind, ui
+from instaui import ui
 from instaui_tdesign import locales, td
 
 from page_loader import get_page_infos
@@ -32,4 +32,4 @@ for info in get_page_infos():
 
 
 if not parse_no_server_flag():
-    ui.server(debug=True).run(port=12345)
+    ui.server(debug=True).run(port=25648)

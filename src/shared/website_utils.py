@@ -1,10 +1,11 @@
+import xml.etree.ElementTree as ET
+from pathlib import Path
 from typing import Callable, Optional
-from instaui import zero, cdn
-from instaui_tdesign import cdn as td_cdn
+
+from instaui import cdn, zero
 from instaui_echarts import cdn as echarts_cdn
 from instaui_shiki import cdn as shiki_cdn
-from pathlib import Path
-import xml.etree.ElementTree as ET
+from instaui_tdesign import cdn as td_cdn
 
 from .cmd import parse_offline_flag
 

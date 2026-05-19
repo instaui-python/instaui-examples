@@ -88,19 +88,21 @@ def tasks_list_view(type: Literal["all", "active", "completed"]):
                         ):
                             td.checkbox(todo["done"], label=todo["name"])
 
-                            td.button(
-                                icon="todo_list:edit",
-                                shape="circle",
-                                variant="outline",
-                                theme="primary",
-                            ).on_click(state.show_edit_input, params=[todo["id"]])
+                            todo_action_view(todo)
 
-                            td.button(
-                                icon="todo_list:delete-1-filled",
-                                disabled=ui.not_(todo["done"]),
-                                shape="circle",
-                                variant="dashed",
-                            ).on_click(state.delete_task, params=[todo["id"]])
+                            # td.button(
+                            #     icon="todo_list:edit",
+                            #     shape="circle",
+                            #     variant="outline",
+                            #     theme="primary",
+                            # ).on_click(state.show_edit_input, params=[todo["id"]])
+
+                            # td.button(
+                            #     icon="todo_list:delete-1-filled",
+                            #     disabled=ui.not_(todo["done"]),
+                            #     shape="circle",
+                            #     variant="dashed",
+                            # ).on_click(state.delete_task, params=[todo["id"]])
 
                     with mt.case(True):
                         with ui.grid(columns="1fr auto", align="center").classes(
@@ -132,3 +134,37 @@ def task_description_view():
             variant="outline",
             disabled=ui.len_(state.completed_tasks) < 1,
         ).on_click(state.clear_completed_tasks)
+
+
+def todo_action_view(todo: TTodo):
+    state = State.get()
+
+    show_edit_input = ui.js_event(
+        inputs=[state.todos, todo["id"]],
+        outputs=[state.todos],
+        code=r"""(todos, id) => {
+        const todo = todos.find(todo => todo.id === id);
+        todo.edit = !todo.edit;
+        return todos;
+}""",
+    )
+
+    delete_task = ui.js_event(
+        inputs=[state.todos, todo["id"]],
+        outputs=[state.todos],
+        code="(todos, id) => todos.filter(todo => todo.id !== id)",
+    )
+
+    td.button(
+        icon="todo_list:edit",
+        shape="circle",
+        variant="outline",
+        theme="primary",
+    ).on_click(show_edit_input)
+
+    td.button(
+        icon="todo_list:delete-1-filled",
+        disabled=ui.not_(todo["done"]),
+        shape="circle",
+        variant="dashed",
+    ).on_click(delete_task)

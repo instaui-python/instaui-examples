@@ -1,6 +1,8 @@
 from pathlib import Path
+
 from instaui import ui
 from instaui_tdesign import td
+
 from .i18n import language_dict_sets
 
 

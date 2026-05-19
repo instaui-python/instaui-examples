@@ -1,10 +1,9 @@
-import instaui.dev
 from instaui_tdesign import td
-from shared.css import apply_css
-from shared.cmd import parse_offline_flag
-from shared.website_utils import zero_dist_to_website
-from page_loader import get_page_infos
 
+from page_loader import get_page_infos
+from shared.cmd import parse_offline_flag
+from shared.css import apply_css
+from shared.website_utils import zero_dist_to_website
 
 td.use(theme="violet", locale="en_US")
 apply_css()

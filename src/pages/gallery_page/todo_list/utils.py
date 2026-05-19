@@ -1,8 +1,9 @@
-from typing import Callable
-from instaui import zero, cdn
-from instaui_tdesign import cdn as td_cdn
-from pathlib import Path
 import xml.etree.ElementTree as ET
+from pathlib import Path
+from typing import Callable
+
+from instaui import cdn, zero
+from instaui_tdesign import cdn as td_cdn
 
 
 def zero_dist(render_fn: Callable):

@@ -1,14 +1,13 @@
 from dataclasses import dataclass
 from typing import Callable, Optional
 
-
-from pages.index_page.main import page as index_page
-from pages.instaui_page.main import page as instaui_page
 from pages.echarts_page.main import page as echarts_page
-from pages.shiki_page.main import page as shiki_page
-from pages.tdesign_page.main import page as tdesign_page
 from pages.gallery_page.etch_sketch.main import page as etch_sketch_page
 from pages.gallery_page.todo_list.main import page as todo_list_page
+from pages.index_page.main import page as index_page
+from pages.instaui_page.main import page as instaui_page
+from pages.shiki_page.main import page as shiki_page
+from pages.tdesign_page.main import page as tdesign_page
 
 
 @dataclass
